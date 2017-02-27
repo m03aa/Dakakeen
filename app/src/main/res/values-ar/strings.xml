@@ -7,4 +7,6 @@
     <string name="password">كلمة المرور</string>
     <string name="register">إنشاء حساب</string>
     <string name="username">إسم المستخدم</string>
+    <string name="all_fields_required">جميع الحقول مطلوبة</string>
+    <string name="Login_successful">تم تسجيل الدخول بنجاح</string>
 </resources>

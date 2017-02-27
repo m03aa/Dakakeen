@@ -22,18 +22,18 @@
             android:text="@string/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/registerButton"
+            android:id="@+id/registerDirectButton"
             android:layout_weight="1"
             android:layout_gravity="fill"
             android:onClick="directToRegister"
-            android:background="@color/purple"
+            android:background="@color/gray"
             android:textColor="@color/creamy" />
 
         <Button
             android:text="@string/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/LoginButton"
+            android:id="@+id/loginDirectButton"
             android:layout_weight="1"
             android:layout_gravity="fill"
             android:onClick="directToLogin"
