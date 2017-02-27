@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">دكاكين</string>
     <string name="delete">حذف</string>
+    <string name="Continue">متابعة</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="password">كلمة المرور</string>
+    <string name="register">إنشاء حساب</string>
+    <string name="username">إسم المستخدم</string>
 </resources>

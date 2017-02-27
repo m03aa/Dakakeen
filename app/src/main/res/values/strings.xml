@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Dakakeen</string>
     <string name="delete">Delete</string>
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="Continue">Continue</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
