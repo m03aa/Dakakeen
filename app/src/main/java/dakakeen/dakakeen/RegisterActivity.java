@@ -64,6 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
             phone.setVisibility(View.VISIBLE);
             registerLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void checkRegister(View view){
 
     }
 }

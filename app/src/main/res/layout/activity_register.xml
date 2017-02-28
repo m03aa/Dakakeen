@@ -97,7 +97,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/registerSubmitButton"
             android:textColor="@color/creamy"
-            android:background="@color/gray" />
+            android:background="@color/gray"
+            android:onClick="checkRegister" />
 
     </LinearLayout>
 
