@@ -11,4 +11,10 @@
     <string name="Login_successful">تم تسجيل الدخول بنجاح</string>
     <string name="provider">منتج</string>
     <string name="customer">حساب شخصي</string>
+    <string name="phone">رقم الجوال</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="address">العنوان</string>
+    <string name="name">الإسم</string>
+    <string name="nationalID">رقم الهوية الوطنية</string>
+    <string name="submit">تم</string>
 </resources>

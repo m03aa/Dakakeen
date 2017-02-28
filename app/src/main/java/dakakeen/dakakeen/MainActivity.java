@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void directToRegister(View view){
-
+        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void directToLogin(View view){

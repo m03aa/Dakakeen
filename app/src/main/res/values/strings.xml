@@ -10,4 +10,10 @@
     <string name="Login_successful">Log In successful</string>
     <string name="provider">Provider</string>
     <string name="customer">Customer</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="name">Name</string>
+    <string name="nationalID">National ID</string>
+    <string name="submit">Submit</string>
 </resources>
