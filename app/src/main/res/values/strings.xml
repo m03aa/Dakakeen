@@ -8,4 +8,6 @@
     <string name="password">Password</string>
     <string name="all_fields_required">All fields are required</string>
     <string name="Login_successful">Log In successful</string>
+    <string name="provider">Provider</string>
+    <string name="customer">Customer</string>
 </resources>

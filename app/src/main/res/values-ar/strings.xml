@@ -9,4 +9,6 @@
     <string name="username">إسم المستخدم</string>
     <string name="all_fields_required">جميع الحقول مطلوبة</string>
     <string name="Login_successful">تم تسجيل الدخول بنجاح</string>
+    <string name="provider">منتج</string>
+    <string name="customer">حساب شخصي</string>
 </resources>

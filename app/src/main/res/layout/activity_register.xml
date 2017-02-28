@@ -8,6 +8,63 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="dakakeen.dakakeen.RegisterActivity">
+    tools:context="dakakeen.dakakeen.RegisterActivity"
+    android:background="@color/creamy">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/providerLinearLayout"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/customerLinearLayout"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/roleLinearLayout">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/registerRole">
+
+            <RadioButton
+                android:text="@string/provider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/providerRadioButton"
+                android:layout_weight="1"
+                android:textColor="@color/light_red"
+                android:buttonTint="@color/gray"/>
+
+            <RadioButton
+                android:text="@string/customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/customerRadioButton"
+                android:layout_weight="1"
+                android:textColor="@color/light_red"
+                android:checked="true"
+                android:buttonTint="@color/gray"/>
+        </RadioGroup>
+
+        <Button
+            android:text="@string/Continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/displayRegisterFormButton"
+            android:background="@color/gray"
+            android:textColor="@color/creamy"
+            android:onClick="displayRegisterForm" />
+
+    </LinearLayout>
 </RelativeLayout>
