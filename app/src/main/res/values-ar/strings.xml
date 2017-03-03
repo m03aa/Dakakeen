@@ -17,4 +17,6 @@
     <string name="name">الإسم</string>
     <string name="nationalID">رقم الهوية الوطنية</string>
     <string name="submit">تم</string>
+    <string name="register_successful">تم إنشاء حسابك بنجاح</string>
+    <string name="email_correct">يجيب أن يكون البريد المدخل صحيحا</string>
 </resources>

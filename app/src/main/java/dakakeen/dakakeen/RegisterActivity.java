@@ -1,5 +1,6 @@
 package dakakeen.dakakeen;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -67,6 +69,50 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void checkRegister(View view){
+        if(registerRole.getCheckedRadioButtonId() == customer.getId()){
+            if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ||
+                    email.getText().toString().isEmpty() || address.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
+            }
+            /*check database
+            else if(){
 
+            }*/
+            else{
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+                    Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+        }
+        else{
+            if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ||
+                    email.getText().toString().isEmpty() || address.getText().toString().isEmpty()
+                    && name.getText().toString().isEmpty() || nationalId.getText().toString().isEmpty() ||
+                    phone.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
+            }
+            /*check database
+            else if(){
+
+            }*/
+            else{
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+                    Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        }
     }
 }

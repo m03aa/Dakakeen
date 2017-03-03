@@ -16,4 +16,12 @@
     <string name="name">Name</string>
     <string name="nationalID">National ID</string>
     <string name="submit">Submit</string>
+    <string name="register_successful">Register successful</string>
+    <string name="email_correct">The Email must be valid</string>
+    <string name="title_activity_orders_list">OrdersListActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
