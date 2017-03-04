@@ -19,10 +19,6 @@
         <activity
             android:name=".RegisterActivity"
             android:configChanges="orientation|screenSize" />
-        <activity
-            android:name=".OrdersListActivity"
-            android:label="@string/title_activity_orders_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
