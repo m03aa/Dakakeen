@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         }*/
         else{
             Toast.makeText(getApplicationContext(),R.string.Login_successful,Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(),OrdersListActivity.class);
-            startActivity(intent);
+            /*Intent intent = new Intent(getApplicationContext(),);
+            startActivity(intent);*/
             finish();
         }
     }
