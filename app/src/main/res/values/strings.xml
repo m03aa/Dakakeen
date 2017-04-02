@@ -18,5 +18,14 @@
     <string name="submit">Submit</string>
     <string name="register_successful">Register successful</string>
     <string name="email_correct">The Email must be valid</string>
+    <string name="title_activity_tabs">tabsActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="orders">Orders</string>
+    <string name="offers">Offers</string>
+    <string name="settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

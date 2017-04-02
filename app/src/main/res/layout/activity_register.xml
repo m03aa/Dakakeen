@@ -29,14 +29,15 @@
             android:textColor="@color/gray" />
 
         <EditText
+            android:id="@+id/registerPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/registerPasswordEditText"
             android:hint="@string/password"
-            android:textColorHint="@color/purple"
-            android:textColor="@color/gray" />
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/purple" />
 
         <EditText
             android:layout_width="match_parent"

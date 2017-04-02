@@ -19,4 +19,7 @@
     <string name="submit">تم</string>
     <string name="register_successful">تم إنشاء حسابك بنجاح</string>
     <string name="email_correct">يجيب أن يكون البريد المدخل صحيحا</string>
+    <string name="orders">الطلبات</string>
+    <string name="offers">العروض</string>
+    <string name="settings">الإعدادات</string>
 </resources>
