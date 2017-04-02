@@ -22,4 +22,8 @@
     <string name="orders">الطلبات</string>
     <string name="offers">العروض</string>
     <string name="settings">الإعدادات</string>
+    <string name="create_order">إنشاء طلب جديد</string>
+    <string name="order_title">عنوان الطلب</string>
+    <string name="description">الوصف</string>
+    <string name="category">الفئة</string>
 </resources>
