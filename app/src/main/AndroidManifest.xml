@@ -23,7 +23,6 @@
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".tabsActivity"
-            android:label="@string/title_activity_tabs"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateOrder"></activity>
     </application>
