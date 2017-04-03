@@ -44,7 +44,7 @@ public class tabsActivity extends AppCompatActivity implements android.app.Actio
     private ViewPager mViewPager;
 
     //i created new action bar object
-    android.app.ActionBar actionBar;
+    private android.app.ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

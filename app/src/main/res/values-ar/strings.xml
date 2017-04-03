@@ -43,6 +43,7 @@
         <item>تغيير كلمة المرور</item>
 
     </string-array>
+    <string name="select_picture">اختيار صورة</string>
 
 
 </resources>

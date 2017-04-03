@@ -9,16 +9,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 public class CreateOrder extends AppCompatActivity {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
+    private EditText orderTitel, orderDescription;
+    private Spinner category;
+    private ImageView image;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
+
+        orderTitel= (EditText)findViewById(R.id.orderTitleEditText);
+        orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
+        category = (Spinner)findViewById(R.id.categorySpinner);
+        image = (ImageView)findViewById(R.id.selectedImageView);
+
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
@@ -55,7 +69,10 @@ public class CreateOrder extends AppCompatActivity {
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
         }
+    }
 
+
+    public void createOrder(View view){
 
     }
 }

@@ -14,21 +14,13 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     //Activity Layouts
-    LinearLayout roleLayout;
-    LinearLayout registerLayout;
+    private LinearLayout roleLayout, registerLayout;
     //roleLayout components
-    RadioGroup registerRole;
-    RadioButton customer;
-    RadioButton provider;
+    private RadioGroup registerRole;
+    private RadioButton customer, provider;
     //registerLayout components
-    EditText username;
-    EditText password;
-    EditText email;
-    EditText name;
-    EditText nationalId;
-    EditText phone;
-    EditText address;
-    Button registerSubmit;
+    private EditText username, password, email, name, nationalId, phone, address;
+    private Button registerSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
