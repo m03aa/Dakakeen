@@ -25,6 +25,7 @@
             android:name=".tabsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateOrder"></activity>
+        <activity android:name=".EditOrder"></activity>
     </application>
 
 </manifest>

@@ -1,16 +1,24 @@
 package dakakeen.dakakeen;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,8 +40,13 @@ public class viewOrdersFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button directToCreateOrder;
     private OnFragmentInteractionListener mListener;
+
+    private Button directToCreateOrder;
+    private ListView ordersList;
+
+    private String[] titles = {"Hat", "Scarf"};
+
 
     public viewOrdersFragment() {
         // Required empty public constructor
@@ -57,14 +70,6 @@ public class viewOrdersFragment extends Fragment {
         return fragment;
     }
 
-    public void directTocreateOrder(View v ){
-        Log.d("hello","hhhhhhhhhhhhhhhhhhhhhhhhhhh");
-        Intent intent = new Intent(getContext(),CreateOrder.class);
-        startActivity(intent);
-
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +77,6 @@ public class viewOrdersFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -88,10 +91,41 @@ public class viewOrdersFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //Log.d("hello","hhhhhhhhhhhhhhhhhhhhhhhhhhh");
                 Intent intent = new Intent(getContext(),CreateOrder.class);
                 startActivity(intent);
 
+            }
+        });
+
+        /*to fill ordersList*/
+        ordersList = (ListView) v.findViewById(R.id.ordersList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,
+                android.R.id.text1, titles);
+        ordersList.setAdapter(adapter);
+
+        /*to pass an order from ordersList to EditOrder*/
+        ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
+                new AlertDialog.Builder(getContext())
+                        .setMessage(R.string.edit_or_delete)
+                        .setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(getContext(),EditOrder.class);
+                                //intent.putExtra("orderId",);
+                                intent.putExtra("orderTitle",titles[position]);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //this will be added later
+
+                            }
+                        })
+                        .show();
             }
         });
 

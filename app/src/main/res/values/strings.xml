@@ -34,6 +34,7 @@
     
     
     <string-array name="categories">
+        <item>None</item>
         <item>Hand craft</item>
         <item>accessories </item>
         <item>perfumes</item>
@@ -52,4 +53,6 @@
 
     </string-array>
     <string name="select_picture">Select Picture</string>
+    <string name="edit_or_delete">Do you want to Edit or Delete?</string>
+    <string name="edit">Edit</string>
 </resources>

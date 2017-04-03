@@ -126,7 +126,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="@color/purple"
-        android:onClick="createOrder"
+        android:onClick="submitOrder"
         android:text="@string/submit"
         android:textColor="@color/creamy"
         app:layout_constraintBottom_toBottomOf="parent"
