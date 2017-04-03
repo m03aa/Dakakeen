@@ -31,5 +31,18 @@
     <string name="order_title">Order title</string>
     <string name="description">Description</string>
     <string name="category">Category</string>
+    
+    
+    <string-array name="categories">
+        <item>Hand craft</item>
+        <item>accessories </item>
+        <item>perfumes</item>
+        <item>Food</item>
+        <item>Fashion</item>
+        <item>Painting</item>
+
+
+
+    </string-array>
 
 </resources>

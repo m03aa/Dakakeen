@@ -26,4 +26,18 @@
     <string name="order_title">عنوان الطلب</string>
     <string name="description">الوصف</string>
     <string name="category">الفئة</string>
+
+    <string-array name="categories">
+        <item>الصناعات اليدوية</item>
+        <item> الإكسسوارات</item>
+        <item>العطورات</item>
+        <item>أطعمة</item>
+        <item>الأزياء</item>
+        <item>لوحات فنية</item>
+
+
+
+    </string-array>
+
+
 </resources>
