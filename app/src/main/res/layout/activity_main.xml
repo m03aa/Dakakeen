@@ -19,25 +19,25 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:text="@string/register"
+            android:id="@+id/registerDirectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/registerDirectButton"
-            android:layout_weight="1"
             android:layout_gravity="fill"
+            android:layout_weight="1"
+            android:background="@color/purple"
             android:onClick="directToRegister"
-            android:background="@color/gray"
+            android:text="@string/register"
             android:textColor="@color/creamy" />
 
         <Button
-            android:text="@string/login"
+            android:id="@+id/loginDirectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/loginDirectButton"
-            android:layout_weight="1"
             android:layout_gravity="fill"
+            android:layout_weight="1"
+            android:background="@color/purple"
             android:onClick="directToLogin"
-            android:background="@color/gray"
+            android:text="@string/login"
             android:textColor="@color/creamy" />
     </LinearLayout>
 

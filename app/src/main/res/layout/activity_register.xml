@@ -93,13 +93,13 @@
             android:visibility="invisible" />
 
         <Button
-            android:text="@string/register"
+            android:id="@+id/registerSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/registerSubmitButton"
-            android:textColor="@color/creamy"
-            android:background="@color/gray"
-            android:onClick="checkRegister" />
+            android:background="@color/purple"
+            android:onClick="checkRegister"
+            android:text="@string/register"
+            android:textColor="@color/creamy" />
 
     </LinearLayout>
 
@@ -138,13 +138,13 @@
         </RadioGroup>
 
         <Button
-            android:text="@string/Continue"
+            android:id="@+id/displayRegisterFormButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/displayRegisterFormButton"
-            android:background="@color/gray"
-            android:textColor="@color/creamy"
-            android:onClick="displayRegisterForm" />
+            android:background="@color/purple"
+            android:onClick="displayRegisterForm"
+            android:text="@string/Continue"
+            android:textColor="@color/creamy" />
 
     </LinearLayout>
 </RelativeLayout>

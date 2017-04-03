@@ -42,15 +42,15 @@
     </LinearLayout>
 
     <Button
-        android:text="@string/login"
+        android:id="@+id/LoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/LoginButton"
-        android:background="@color/gray"
-        android:textColor="@color/creamy"
-        android:layout_marginBottom="73dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:onClick="checkLogin" />
+        android:layout_marginBottom="73dp"
+        android:background="@color/purple"
+        android:onClick="checkLogin"
+        android:text="@string/login"
+        android:textColor="@color/creamy" />
 
 </RelativeLayout>
