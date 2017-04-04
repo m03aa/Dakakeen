@@ -66,12 +66,18 @@ public class RegisterActivity extends AppCompatActivity {
                     email.getText().toString().isEmpty() || address.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
             }
+            else if(username.getText().toString().contains(" ") ||   password.getText().toString().contains(" ")){
+                Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
+            }
             /*check database
             else if(){
 
             }*/
             else{
-                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+                if (password.getText().toString().length() < 6){
+                    Toast.makeText(getApplicationContext(),R.string.short_password,Toast.LENGTH_SHORT).show();
+                }
+                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
                     Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -90,13 +96,25 @@ public class RegisterActivity extends AppCompatActivity {
                     phone.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
             }
+            else if(username.getText().toString().contains(" ") ||   password.getText().toString().contains(" ")){
+                Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
+            }
             /*check database
             else if(){
 
             }*/
             else{
-                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+                if (password.getText().toString().length() < 6){
+                    Toast.makeText(getApplicationContext(),R.string.short_password,Toast.LENGTH_SHORT).show();
+                }
+                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
                     Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
+                }
+                else if(nationalId.getText().toString().length() != 10){
+                    Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
+                }
+                else if (phone.getText().toString().length() != 10){
+                    Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();

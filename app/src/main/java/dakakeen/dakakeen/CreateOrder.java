@@ -89,7 +89,10 @@ public class CreateOrder extends AppCompatActivity {
             title = orderTitle.getText().toString();
             description = orderDescription.getText().toString();
             category = orderCategory.getSelectedItem().toString();
-            return true;
+            if(!title.trim().matches("") && !description.trim().matches("")){
+                return true;
+            }
+            else return false;
         }
         else {
             return false;

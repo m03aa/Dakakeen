@@ -55,4 +55,7 @@
     <string name="select_picture">Select Picture</string>
     <string name="edit_or_delete">Do you want to Edit or Delete?</string>
     <string name="edit">Edit</string>
+    <string name="username_password_contain_space">Username and Password cannot contain spaces</string>
+    <string name="number_incorrect">The entered number is incorrect</string>
+    <string name="short_password">The password should be at least 6 characters long</string>
 </resources>
