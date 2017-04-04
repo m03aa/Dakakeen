@@ -13,7 +13,7 @@
         android:background="@color/creamy">
 
         <ListView
-            android:id="@+id/sittingsList"
+            android:id="@+id/settingsList"
             android:layout_width="0dp"
             android:layout_height="430dp"
             android:entries="@array/settings"

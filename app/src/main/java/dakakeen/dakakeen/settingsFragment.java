@@ -1,12 +1,17 @@
 package dakakeen.dakakeen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -30,6 +35,8 @@ public class settingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+   public ListView settingsListView;
+    String [] set = {"Edit profile","Change password"};
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,14 +69,48 @@ public class settingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        Log.d("d","ddddddddddddddddddddd");
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        /*
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,android.R.id.text1,set);
+        Log.d("d",set[0]);
+        */
+
+        settingsListView = (ListView)view.findViewById(R.id.settingsList);
+        Log.d("d","ddddddddddddddddddddd");
+
+        //settingsListView.setAdapter(adapter);
+        //Log.d("d","ddddddddddddddddddddd");
+
+        settingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+          @Override
+          public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
+              if(position==0){
+                  Log.d("editprofile","selected");
+
+              }
+              if(position==1){
+                  Log.d("changepassword","Selected");
+
+              }
+              Intent i = new Intent(getContext(),CreateOrder.class);
+              startActivity(i);
+
+          }
+      });
+
+
+        return view;
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,6 +118,10 @@ public class settingsFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+
+
+
+
     }
 
     @Override
