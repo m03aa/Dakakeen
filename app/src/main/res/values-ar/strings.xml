@@ -50,6 +50,7 @@
     <string name="username_password_contain_space">اسم المستخدم و كلمة السر لا يمكن أن تحتوي على مسافات</string>
     <string name="number_incorrect">الرقم المدخل غير صحيح</string>
     <string name="short_password">كلمة المرور يجب أن تكون مكونة من ستة خانات على الأقل</string>
+    <string name="price">السعر</string>
 
 
 </resources>

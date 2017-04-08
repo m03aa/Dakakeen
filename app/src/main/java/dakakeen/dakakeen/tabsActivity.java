@@ -1,6 +1,7 @@
 package dakakeen.dakakeen;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,11 +46,16 @@ public class tabsActivity extends AppCompatActivity implements android.app.Actio
 
     //i created new action bar object
     private android.app.ActionBar actionBar;
+    private String username;
+    private int role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
+
+        username = getIntent().getStringExtra("username");
+        role = getIntent().getIntExtra("role",1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
