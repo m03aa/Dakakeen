@@ -26,7 +26,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateOrder" />
         <activity android:name=".EditOrder" />
-        <activity android:name=".CreateOffer"></activity>
+        <activity android:name=".CreateOffer" />
+        <activity android:name=".ViewOrderDetails"></activity>
     </application>
 
 </manifest>

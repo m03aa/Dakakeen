@@ -34,7 +34,6 @@ public class CreateOrder extends AppCompatActivity {
         orderTitle= (EditText)findViewById(R.id.orderTitleEditText);
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
-        orderImage = (ImageView)findViewById(R.id.selectedImageView);
 
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +67,8 @@ public class CreateOrder extends AppCompatActivity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            ImageView imageView = (ImageView) findViewById(R.id.selectedImageView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            orderImage = (ImageView) findViewById(R.id.orderImageView);
+            orderImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
         }
     }
@@ -78,6 +77,8 @@ public class CreateOrder extends AppCompatActivity {
     public void submitOrder(View view){
         if (checkOrderInfo()){
             //we will change it later
+            Toast.makeText(getApplicationContext(),R.string.order_success,Toast.LENGTH_SHORT).show();
+            finish();
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
@@ -90,6 +91,7 @@ public class CreateOrder extends AppCompatActivity {
             title = orderTitle.getText().toString();
             description = orderDescription.getText().toString();
             category = orderCategory.getSelectedItem().toString();
+
             if(!title.trim().matches("") && !description.trim().matches("")){
                 return true;
             }

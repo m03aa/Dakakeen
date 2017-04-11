@@ -34,7 +34,6 @@ public class EditOrder extends AppCompatActivity {
         orderTitle= (EditText)findViewById(R.id.orderTitleEditText);
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
-        orderImage = (ImageView)findViewById(R.id.selectedImageView);
 
         //we will change this later
         Intent intent = getIntent();
@@ -76,8 +75,8 @@ public class EditOrder extends AppCompatActivity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            ImageView imageView = (ImageView) findViewById(R.id.selectedImageView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            orderImage = (ImageView) findViewById(R.id.orderImageView);
+            orderImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
         }
     }

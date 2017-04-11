@@ -102,7 +102,11 @@ public class ViewOrdersFragment extends Fragment {
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
-                new AlertDialog.Builder(getContext())
+                //i need to pass order id and title
+                Intent intent = new Intent(getContext(),ViewOrderDetails.class);
+                startActivity(intent);
+
+                /*new AlertDialog.Builder(getContext())
                         .setMessage(R.string.edit_or_delete)
                         .setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
                             @Override
@@ -120,7 +124,7 @@ public class ViewOrdersFragment extends Fragment {
 
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
 
