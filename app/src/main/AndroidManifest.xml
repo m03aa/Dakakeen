@@ -22,11 +22,11 @@
             android:name=".RegisterActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".tabsActivity"
+            android:name=".TabsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateOrder" />
         <activity android:name=".EditOrder" />
-        <activity android:name=".createOffer"></activity>
+        <activity android:name=".CreateOffer"></activity>
     </application>
 
 </manifest>

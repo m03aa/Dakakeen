@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +15,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link viewOrdersFragment.OnFragmentInteractionListener} interface
+ * {@link ViewOrdersFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link viewOrdersFragment#newInstance} factory method to
+ * Use the {@link ViewOrdersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class viewOrdersFragment extends Fragment {
+public class ViewOrdersFragment extends Fragment {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -48,7 +43,7 @@ public class viewOrdersFragment extends Fragment {
     private String[] titles = {"Hat", "Scarf"};
 
 
-    public viewOrdersFragment() {
+    public ViewOrdersFragment() {
         // Required empty public constructor
     }
 
@@ -58,11 +53,11 @@ public class viewOrdersFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment viewOrdersFragment.
+     * @return A new instance of fragment ViewOrdersFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static viewOrdersFragment newInstance(String param1, String param2) {
-        viewOrdersFragment fragment = new viewOrdersFragment();
+    public static ViewOrdersFragment newInstance(String param1, String param2) {
+        ViewOrdersFragment fragment = new ViewOrdersFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

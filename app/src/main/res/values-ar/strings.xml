@@ -51,6 +51,7 @@
     <string name="number_incorrect">الرقم المدخل غير صحيح</string>
     <string name="short_password">كلمة المرور يجب أن تكون مكونة من ستة خانات على الأقل</string>
     <string name="price">السعر</string>
+    <string name="top_providers">أفضل المنتجين</string>
 
 
 </resources>

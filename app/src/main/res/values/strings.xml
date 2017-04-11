@@ -58,4 +58,5 @@
     <string name="number_incorrect">The entered number is incorrect</string>
     <string name="short_password">The password should be at least 6 characters long</string>
     <string name="price">Price</string>
+    <string name="top_providers">Top Providers</string>
 </resources>
