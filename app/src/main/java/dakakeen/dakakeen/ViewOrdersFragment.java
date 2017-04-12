@@ -115,7 +115,7 @@ public class ViewOrdersFragment extends Fragment {
 
         /*to fill ordersList*/
         ordersList = (ListView) v.findViewById(R.id.ordersList);
-        updateOrdersList();
+        //updateOrdersList();
 
         //to pass an order from ordersList to viewOrderDetails
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

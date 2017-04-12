@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 public class Communication {
 
-    private final String url = "10.0.2.2:3000";
+    private final String url = "https://dakaken.cfapps.io";
 
     public String getUrl() {
         return url;

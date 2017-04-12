@@ -30,21 +30,30 @@ public class ViewOrderDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_details);
 
+
+
+        orderTitle = (TextView) findViewById(R.id.orderTitle);
+        orderDescription = (TextView)findViewById(R.id.orderDescription);
+        orderImage = (ImageView)findViewById(R.id.orderImageView);
+
+
         order = (Order)getIntent().getSerializableExtra("order");
 
-        if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription().isEmpty()
+        if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null
                 || order.getCategory() == 0){
             //get Orders for the server
             final Communication communication = new Communication();
 
             AsyncHttpClient client = new AsyncHttpClient();
-            client.get(getApplicationContext(), communication.getUrl() + "/orders/" + order.getId(), new AsyncHttpResponseHandler() {
+            client.get(getApplicationContext(), communication.getUrl() + "/order/" + order.getId(), new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     try {
                         JSONObject jsonObject = new JSONObject(new String(responseBody));
                         order.setDescription(jsonObject.getString("description"));
                         order.setCategory(jsonObject.getInt("Category"));
+                        orderTitle.setText(order.getTitle());
+                        orderDescription.setText(order.getDescription());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -56,15 +65,6 @@ public class ViewOrderDetails extends AppCompatActivity {
                 }
             });
         }
-
-
-        orderTitle = (TextView) findViewById(R.id.orderTitle);
-        orderDescription = (TextView)findViewById(R.id.orderDescription);
-        orderImage = (ImageView)findViewById(R.id.orderImageView);
-
-        orderTitle.setText(order.getTitle());
-        orderDescription.setText(order.getDescription());
-
     }
 
 

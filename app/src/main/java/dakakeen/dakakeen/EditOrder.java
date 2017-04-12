@@ -94,13 +94,13 @@ public class EditOrder extends AppCompatActivity {
             RequestParams params = new RequestParams();
             params.put("customerUsername",order.getUsername());
             params.put("orderId",order.getId());
-            params.put("tile",order.getTitle());
+            params.put("title",order.getTitle());
             params.put("description",order.getDescription());
             params.put("Category",order.getCategory());
 
             final Communication communication = new Communication();
             AsyncHttpClient client = new AsyncHttpClient();
-            client.post(getApplicationContext(), communication.getUrl()+"/myorders", params, new AsyncHttpResponseHandler() {
+            client.put(getApplicationContext(), communication.getUrl()+"/myorders", params, new AsyncHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {

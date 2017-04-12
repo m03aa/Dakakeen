@@ -88,7 +88,7 @@ public class CreateOrder extends AppCompatActivity {
             //send order data to the server
             RequestParams params = new RequestParams();
             params.put("customerUsername",order.getUsername());
-            params.put("tile",order.getTitle());
+            params.put("title",order.getTitle());
             params.put("description",order.getDescription());
             params.put("Category",order.getCategory());
 
