@@ -11,7 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -39,20 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/description"
-            android:textColor="@color/gray" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/category"
-            android:textColor="@color/purple"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/orderCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/category"
             android:textColor="@color/gray" />
 
         <ImageView

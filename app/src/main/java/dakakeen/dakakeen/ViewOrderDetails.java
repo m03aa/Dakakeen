@@ -8,21 +8,62 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ViewOrderDetails extends AppCompatActivity {
 
-    private TextView orderTitle, orderDescription, orderCategory;
+    private TextView orderTitle, orderDescription;
     private ImageView orderImage;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_details);
 
+        order = (Order)getIntent().getSerializableExtra("order");
+
+        if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription().isEmpty()
+                || order.getCategory() == 0){
+            //get Orders for the server
+            final Communication communication = new Communication();
+
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(getApplicationContext(), communication.getUrl() + "/orders/" + order.getId(), new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(new String(responseBody));
+                        order.setDescription(jsonObject.getString("description"));
+                        order.setCategory(jsonObject.getInt("Category"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
         orderTitle = (TextView) findViewById(R.id.orderTitle);
         orderDescription = (TextView)findViewById(R.id.orderDescription);
-        orderCategory = (TextView)findViewById(R.id.orderCategory);
         orderImage = (ImageView)findViewById(R.id.orderImageView);
+
+        orderTitle.setText(order.getTitle());
+        orderDescription.setText(order.getDescription());
 
     }
 
@@ -30,8 +71,7 @@ public class ViewOrderDetails extends AppCompatActivity {
 
     public void directToEditOrder(View view){
         Intent intent = new Intent(getApplicationContext(),EditOrder.class);
-        //intent.putExtra("orderId",);
-        intent.putExtra("orderTitle","Hat");
+        intent.putExtra("order",order);
         startActivity(intent);
         finish();
     }
@@ -39,7 +79,7 @@ public class ViewOrderDetails extends AppCompatActivity {
 
 
     public void deleteOrder(View view){
-        new AlertDialog.Builder(getApplicationContext())
+        /*new AlertDialog.Builder(getApplicationContext())
                 .setMessage(R.string.delete_order)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -54,6 +94,6 @@ public class ViewOrderDetails extends AppCompatActivity {
                         //Nothing will happen :)
                     }
                 })
-                .show();
+                .show();*/
     }
 }

@@ -7,15 +7,15 @@ import java.io.Serializable;
  */
 
 public class Order implements Serializable {
-    private int id;
-    private String title, description, category;
+    private int category, state;
+    private String id, title, description, username;
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,11 +35,32 @@ public class Order implements Serializable {
         this.description = description;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString(){
+        return title;
     }
 }

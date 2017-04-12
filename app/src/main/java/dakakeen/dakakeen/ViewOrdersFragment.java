@@ -14,6 +14,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 
 /**
@@ -40,7 +53,9 @@ public class ViewOrdersFragment extends Fragment {
     private Button directToCreateOrder;
     private ListView ordersList;
 
-    private String[] titles = {"Hat", "Scarf"};
+    public static ArrayList<Order> orders = new ArrayList<>();
+    public static ArrayAdapter<Order> adapter;
+    private String username;
 
 
     public ViewOrdersFragment() {
@@ -69,9 +84,14 @@ public class ViewOrdersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            username = getArguments().getString("username");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateOrdersList();
     }
 
     @Override
@@ -81,12 +101,13 @@ public class ViewOrdersFragment extends Fragment {
 
         // عشان اروح للاكتفيتي من الفراقمنت
        View v = inflater.inflate(R.layout.fragment_view_orders, container, false);
-        directToCreateOrder = (Button)v.findViewById(R.id.createOrderButton);
+        directToCreateOrder = (Button)v.findViewById(R.id.createNewOrderButton);
         directToCreateOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getContext(),CreateOrder.class);
+                intent.putExtra("username",username);
                 startActivity(intent);
 
             }
@@ -94,37 +115,16 @@ public class ViewOrdersFragment extends Fragment {
 
         /*to fill ordersList*/
         ordersList = (ListView) v.findViewById(R.id.ordersList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,
-                android.R.id.text1, titles);
-        ordersList.setAdapter(adapter);
+        updateOrdersList();
 
-        /*to pass an order from ordersList to EditOrder*/
+        //to pass an order from ordersList to viewOrderDetails
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
                 //i need to pass order id and title
                 Intent intent = new Intent(getContext(),ViewOrderDetails.class);
+                intent.putExtra("order",orders.get(position));
                 startActivity(intent);
-
-                /*new AlertDialog.Builder(getContext())
-                        .setMessage(R.string.edit_or_delete)
-                        .setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(getContext(),EditOrder.class);
-                                //intent.putExtra("orderId",);
-                                intent.putExtra("orderTitle",titles[position]);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //this will be added later
-
-                            }
-                        })
-                        .show();*/
             }
         });
 
@@ -169,6 +169,44 @@ public class ViewOrdersFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    public void updateOrdersList(){
+        orders.clear();
+        adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                android.R.id.text1, orders);
+        ordersList.setAdapter(adapter);
+
+        //get Orders for the server
+        final Communication communication = new Communication();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(getContext(), communication.getUrl() + "/myorders/" + username, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try {
+                    JSONArray jsonArray = new JSONArray(new String(responseBody));
+                    for (int i=0; i<jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Order order = new Order();
+                        order.setId(jsonObject.getString("_id"));
+                        order.setUsername(username);
+                        order.setTitle(jsonObject.getString("title"));
+                        order.setState(jsonObject.getInt("state"));
+                        orders.add(order);
+                        adapter.notifyDataSetChanged();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

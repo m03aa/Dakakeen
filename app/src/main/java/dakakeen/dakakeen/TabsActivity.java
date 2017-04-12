@@ -134,40 +134,79 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            switch (position){
-                case 0:
-                    return new ViewOrdersFragment();
-                case 1:
-                    return new ViewOffersFragment();
-                case 3:
-                    return new SettingsFragment();
-                case 2:
-                    return new ViewTopProvidersFragment();
-                default:
-                    return null;
+
+            Bundle bundle = new Bundle();
+
+            if (role == 1){
+                switch (position){
+                    case 0:
+                        ViewOrdersFragment orders = new ViewOrdersFragment();
+                        bundle.putString("username",username);
+                        orders.setArguments(bundle);
+                        return orders;
+                    case 1:
+                        ViewOffersFragment offers = new ViewOffersFragment();
+                        bundle.putString("username",username);
+                        offers.setArguments(bundle);
+                        return offers;
+                    case 2:
+                        return new ViewTopProvidersFragment();
+                    case 3:
+                        SettingsFragment settings = new SettingsFragment();
+                        bundle.putString("username",username);
+                        settings.setArguments(bundle);
+                        return settings;
+                    default:
+                        return null;
+                }
             }
+            else {
+                switch (position){
+                    case 0:
+                        return new ViewCustomersOrders();
+                    case 1:
+                        return new ViewMyOffers();
+                    case 2:
+                        return new SettingsFragment();
+                    default:
+                        return null;
+                }
+            }
+
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            //if(role == 1)
+            if(role == 1)
                 return 4;
-            /*else
-                return ;*/
+            else
+                return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getString(R.string.orders);
-                case 1:
-                    return getString(R.string.offers);
-                case 3:
-                    return getString(R.string.settings);
-                case 2:
-                    return getString(R.string.top_providers);
+            if(role == 1){
+                switch (position) {
+                    case 0:
+                        return getString(R.string.orders);
+                    case 1:
+                        return getString(R.string.offers);
+                    case 2:
+                        return getString(R.string.top_providers);
+                    case 3:
+                        return getString(R.string.settings);
+                }
+            }
+            else {
+                switch (position) {
+                    case 0:
+                        return getString(R.string.orders);
+                    case 1:
+                        return getString(R.string.my_offers);
+                    case 2:
+                        return getString(R.string.settings);
+                }
             }
             return null;
         }

@@ -35,11 +35,10 @@
 
     <string-array name="categories">
         <item>None</item>
-        <item>Hand craft</item>
-        <item>accessories </item>
-        <item>perfumes</item>
         <item>Food</item>
+        <item>Hand Craft</item>
         <item>Fashion</item>
+        <item>Accessory</item>
         <item>Painting</item>
 
 
@@ -63,4 +62,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete_order">Do you want to delete your order?</string>
+    <string name="customers_orders">Customers Orders</string>
+    <string name="my_offers">My Offers</string>
 </resources>

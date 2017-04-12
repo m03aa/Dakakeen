@@ -14,6 +14,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import cz.msebera.android.httpclient.Header;
+
 public class EditOrder extends AppCompatActivity {
 
 
@@ -22,7 +28,7 @@ public class EditOrder extends AppCompatActivity {
     private Spinner orderCategory;
     private ImageView orderImage;
     private String title, description, category;
-    private int id;
+    private Order order;
 
 
 
@@ -35,12 +41,11 @@ public class EditOrder extends AppCompatActivity {
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
 
-        //we will change this later
-        Intent intent = getIntent();
-        //id = intent.getIntExtra("orderId",0);
-        String title = intent.getStringExtra("orderTitle");
+        order = (Order)getIntent().getSerializableExtra("order");
 
-        orderTitle.setText(title);
+        orderTitle.setText(order.getTitle());
+        orderDescription.setText(order.getDescription());
+        orderCategory.setSelection(order.getCategory()+1);
 
 
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
@@ -81,10 +86,33 @@ public class EditOrder extends AppCompatActivity {
         }
     }
 
-
+    //Edit the current Order
     public void submitOrder(View view){
+
         if (checkOrderInfo()){
-            //we will change it later
+            //send order data to the server
+            RequestParams params = new RequestParams();
+            params.put("customerUsername",order.getUsername());
+            params.put("orderId",order.getId());
+            params.put("tile",order.getTitle());
+            params.put("description",order.getDescription());
+            params.put("Category",order.getCategory());
+
+            final Communication communication = new Communication();
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.post(getApplicationContext(), communication.getUrl()+"/myorders", params, new AsyncHttpResponseHandler() {
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    Toast.makeText(getApplicationContext(),R.string.order_success,Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
@@ -94,10 +122,11 @@ public class EditOrder extends AppCompatActivity {
     public boolean checkOrderInfo(){
         if (!orderTitle.getText().toString().isEmpty() && !orderDescription.getText().toString().isEmpty()
                 && orderCategory.getSelectedItemPosition() != 0){
-            title = orderTitle.getText().toString();
-            description = orderDescription.getText().toString();
-            category = orderCategory.getSelectedItem().toString();
-            if(!title.trim().matches("") && !description.trim().matches("")){
+            order.setTitle(orderTitle.getText().toString());
+            order.setDescription(orderDescription.getText().toString());
+            order.setCategory(orderCategory.getSelectedItemPosition()-1);
+
+            if(!order.getTitle().trim().matches("") && !order.getDescription().trim().matches("")){
                 return true;
             }
             else return false;

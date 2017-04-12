@@ -29,11 +29,10 @@
 
     <string-array name="categories">
         <item>لا شيء</item>
-        <item>الصناعات اليدوية</item>
-        <item> الإكسسوارات</item>
-        <item>العطورات</item>
         <item>أطعمة</item>
-        <item>الأزياء</item>
+        <item>صناعات يدوية</item>
+        <item>أزياء</item>
+        <item> إكسسوارات</item>
         <item>لوحات فنية</item>
 
 
@@ -56,6 +55,8 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="delete_order">هل تريد حذف طلبك</string>
+    <string name="customers_orders">طلبات العملاء</string>
+    <string name="my_offers">عروضي</string>
 
 
 </resources>

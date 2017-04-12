@@ -9,41 +9,21 @@
     <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
-        android:id="@+id/fragment_view_orders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/creamy"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/ordersList"
             android:layout_width="match_parent"
-            android:layout_height="410dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/createOrderButton"
+            android:id="@+id/createNewOrderButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple"
-            android:onClick="directTocreateOrder"
-            android:text="@string/create_order"
-            android:textColor="@color/creamy"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="430dp"
             android:layout_below="@+id/ordersList"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="14dp" />
-
+            android:background="@color/purple"
+            android:text="@string/create_order"
+            android:textColor="@color/creamy" />
     </RelativeLayout>
 </FrameLayout>

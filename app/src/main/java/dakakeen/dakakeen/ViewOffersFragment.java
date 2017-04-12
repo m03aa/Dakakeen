@@ -27,6 +27,8 @@ public class ViewOffersFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String username;
+
     private OnFragmentInteractionListener mListener;
 
     public ViewOffersFragment() {
@@ -55,8 +57,7 @@ public class ViewOffersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            username = getArguments().getString("username");
         }
     }
 
