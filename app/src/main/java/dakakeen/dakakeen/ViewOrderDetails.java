@@ -37,11 +37,14 @@ public class ViewOrderDetails extends AppCompatActivity {
         orderImage = (ImageView)findViewById(R.id.orderImageView);
 
 
+        //get the passed order from ViewOrdersFragment
         order = (Order)getIntent().getSerializableExtra("order");
 
+        //check if we already have all the order information
         if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null
                 || order.getCategory() == 0){
-            //get Orders for the server
+
+            //get Order information for the server
             final Communication communication = new Communication();
 
             AsyncHttpClient client = new AsyncHttpClient();

@@ -88,6 +88,7 @@ public class ViewOrdersFragment extends Fragment {
         }
     }
 
+    //to refresh the orders list continuously
     @Override
     public void onResume() {
         super.onResume();
@@ -113,9 +114,8 @@ public class ViewOrdersFragment extends Fragment {
             }
         });
 
-        /*to fill ordersList*/
+
         ordersList = (ListView) v.findViewById(R.id.ordersList);
-        //updateOrdersList();
 
         //to pass an order from ordersList to viewOrderDetails
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -172,6 +172,7 @@ public class ViewOrdersFragment extends Fragment {
     }
 
 
+    //request the orders list from the server
     public void updateOrdersList(){
         orders.clear();
         adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,

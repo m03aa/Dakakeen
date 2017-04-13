@@ -57,7 +57,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        //i created new tab layout object
+        //create new tab layout object
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -177,7 +177,6 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             if(role == 1)
                 return 4;
             else
