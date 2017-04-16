@@ -1,5 +1,6 @@
 package dakakeen.dakakeen.CustomerOrders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -7,7 +8,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -60,6 +63,8 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
+
+
     }
 
 
@@ -129,6 +134,14 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
     @Override
     public void onFailure(byte[] responseBody) {
         Toast.makeText(getApplicationContext(), communication.handelError(responseBody), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 
 }

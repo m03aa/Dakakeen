@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -13,9 +14,9 @@ import android.widget.EditText;
 
 public class HideKeyboard {
 
-   /* @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        View v = getCurrentFocus();
+
+    /*public boolean dispatchTouchEvent(Activity activity,MotionEvent ev, View view) {
+        View v = view;
 
         if (v != null &&
                 (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
@@ -27,7 +28,7 @@ public class HideKeyboard {
             float y = ev.getRawY() + v.getTop() - scrcoords[1];
 
             if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
-                hideKeyboard(this);
+                hideKeyboard(activity);
         }
         return super.dispatchTouchEvent(ev);
     }
