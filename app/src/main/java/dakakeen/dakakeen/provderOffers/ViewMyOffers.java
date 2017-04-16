@@ -1,4 +1,4 @@
-package provderOffers;
+package dakakeen.dakakeen.provderOffers;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -6,12 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dakakeen.dakakeen.R;
 
@@ -19,12 +13,12 @@ import dakakeen.dakakeen.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ViewCustomersOrders.OnFragmentInteractionListener} interface
+ * {@link ViewMyOffers.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ViewCustomersOrders#newInstance} factory method to
+ * Use the {@link ViewMyOffers#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewCustomersOrders extends Fragment {
+public class ViewMyOffers extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,11 +30,7 @@ public class ViewCustomersOrders extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private ListView ordersList;
-    private Spinner categories;
-    private List<String> ordersTitles = new ArrayList<>();
-
-    public ViewCustomersOrders() {
+    public ViewMyOffers() {
         // Required empty public constructor
     }
 
@@ -50,11 +40,11 @@ public class ViewCustomersOrders extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ViewCustomersOrders.
+     * @return A new instance of fragment ViewMyOffers.
      */
     // TODO: Rename and change types and number of parameters
-    public static ViewCustomersOrders newInstance(String param1, String param2) {
-        ViewCustomersOrders fragment = new ViewCustomersOrders();
+    public static ViewMyOffers newInstance(String param1, String param2) {
+        ViewMyOffers fragment = new ViewMyOffers();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,15 +65,7 @@ public class ViewCustomersOrders extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_view_customers_orders, container, false);
-
-        /*to fill ordersList*/
-        ordersList = (ListView)v.findViewById(R.id.customersOrdersList);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                android.R.id.text1, ordersTitles);
-        ordersList.setAdapter(arrayAdapter);
-
-         return v;
+        return inflater.inflate(R.layout.fragment_view_my_offers, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

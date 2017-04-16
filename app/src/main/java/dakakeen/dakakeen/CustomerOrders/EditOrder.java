@@ -1,4 +1,4 @@
-package CustomerOrders;
+package dakakeen.dakakeen.CustomerOrders;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,11 +14,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import cz.msebera.android.httpclient.Header;
 import dakakeen.dakakeen.Communication;
 import dakakeen.dakakeen.Order;
 import dakakeen.dakakeen.R;

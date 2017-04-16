@@ -1,4 +1,4 @@
-package provderOffers;
+package dakakeen.dakakeen.provderOffers;
 
 import android.content.Intent;
 import android.database.Cursor;
