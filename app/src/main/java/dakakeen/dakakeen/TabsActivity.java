@@ -14,6 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import CustomerOrders.ViewOrdersFragment;
+import provderOffers.ViewCustomersOrders;
+import provderOffers.ViewMyOffers;
+
 //i added the implements part
 public class TabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
         ViewOrdersFragment.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,

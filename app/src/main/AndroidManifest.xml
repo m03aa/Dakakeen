@@ -25,10 +25,10 @@
         <activity
             android:name=".TabsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CreateOrder" />
-        <activity android:name=".EditOrder" />
-        <activity android:name=".CreateOffer" />
-        <activity android:name=".ViewOrderDetails"></activity>
+        <activity android:name="CustomerOrders.CreateOrder" />
+        <activity android:name="CustomerOrders.EditOrder" />
+        <activity android:name="provderOffers.CreateOffer" />
+        <activity android:name="CustomerOrders.ViewOrderDetails"></activity>
     </application>
 
 </manifest>

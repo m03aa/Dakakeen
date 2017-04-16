@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package provderOffers;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import dakakeen.dakakeen.R;
 
 public class CreateOffer extends AppCompatActivity {
 

@@ -1,8 +1,6 @@
-package dakakeen.dakakeen;
+package CustomerOrders;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,27 +8,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cz.msebera.android.httpclient.Header;
+import dakakeen.dakakeen.Communication;
+import dakakeen.dakakeen.Order;
+import dakakeen.dakakeen.R;
+import dakakeen.dakakeen.ResponseHandler;
 
-public class ViewOrderDetails extends AppCompatActivity {
+public class ViewOrderDetails extends AppCompatActivity implements ResponseHandler {
 
     private TextView orderTitle, orderDescription;
     private ImageView orderImage;
     private Order order;
+    private Communication communication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_details);
 
-
+        communication = new Communication();
 
         orderTitle = (TextView) findViewById(R.id.orderTitle);
         orderDescription = (TextView)findViewById(R.id.orderDescription);
@@ -45,29 +43,26 @@ public class ViewOrderDetails extends AppCompatActivity {
                 || order.getCategory() == 0){
 
             //get Order information for the server
-            final Communication communication = new Communication();
-
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.get(getApplicationContext(), communication.getUrl() + "/order/" + order.getId(), new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(new String(responseBody));
-                        order.setDescription(jsonObject.getString("description"));
-                        order.setCategory(jsonObject.getInt("Category"));
-                        orderTitle.setText(order.getTitle());
-                        orderDescription.setText(order.getDescription());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
-                }
-            });
+            communication.get(communication.getUrl() + "/order/" + order.getId(), this);
         }
+    }
+
+    @Override
+    public void onSuccess(byte[] responseBody) {
+        try {
+            JSONObject jsonObject = new JSONObject(new String(responseBody));
+            order.setDescription(jsonObject.getString("description"));
+            order.setCategory(jsonObject.getInt("Category"));
+            orderTitle.setText(order.getTitle());
+            orderDescription.setText(order.getDescription());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(byte[] responseBody) {
+        Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
     }
 
 

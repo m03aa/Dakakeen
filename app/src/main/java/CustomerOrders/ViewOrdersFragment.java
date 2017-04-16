@@ -1,12 +1,10 @@
-package dakakeen.dakakeen;
+package CustomerOrders;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +14,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
+import dakakeen.dakakeen.Communication;
+import dakakeen.dakakeen.Order;
+import dakakeen.dakakeen.R;
+import dakakeen.dakakeen.ResponseHandler;
 
 
 /**
@@ -37,7 +34,7 @@ import cz.msebera.android.httpclient.Header;
  * Use the {@link ViewOrdersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewOrdersFragment extends Fragment {
+public class ViewOrdersFragment extends Fragment implements ResponseHandler {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -57,6 +54,7 @@ public class ViewOrdersFragment extends Fragment {
     public static ArrayAdapter<Order> adapter;
     private String username;
 
+    private Communication communication;
 
     public ViewOrdersFragment() {
         // Required empty public constructor
@@ -86,6 +84,8 @@ public class ViewOrdersFragment extends Fragment {
         if (getArguments() != null) {
             username = getArguments().getString("username");
         }
+
+        communication = new Communication();
     }
 
     //to refresh the orders list continuously
@@ -179,36 +179,30 @@ public class ViewOrdersFragment extends Fragment {
                 android.R.id.text1, orders);
         ordersList.setAdapter(adapter);
 
-        //get Orders for the server
-        final Communication communication = new Communication();
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(getContext(), communication.getUrl() + "/myorders/" + username, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                try {
-                    JSONArray jsonArray = new JSONArray(new String(responseBody));
-                    for (int i=0; i<jsonArray.length(); i++){
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Order order = new Order();
-                        order.setId(jsonObject.getString("_id"));
-                        order.setUsername(username);
-                        order.setTitle(jsonObject.getString("title"));
-                        order.setState(jsonObject.getInt("state"));
-                        orders.add(order);
-                        adapter.notifyDataSetChanged();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
-            }
-        });
+        communication.get(communication.getUrl() + "/myorders/" + username, this);
     }
 
+    @Override
+    public void onSuccess(byte[] responseBody){
+        try {
+            JSONArray jsonArray = new JSONArray(new String(responseBody));
+            for (int i=0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Order order = new Order();
+                order.setId(jsonObject.getString("_id"));
+                order.setUsername(username);
+                order.setTitle(jsonObject.getString("title"));
+                order.setState(jsonObject.getInt("state"));
+                orders.add(order);
+                adapter.notifyDataSetChanged();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void onFailure(byte[] responseBody) {
+        Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+    }
 }

@@ -1,13 +1,17 @@
-package dakakeen.dakakeen;
+package CustomerOrders;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,17 +23,22 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import cz.msebera.android.httpclient.Header;
+import dakakeen.dakakeen.Communication;
+import dakakeen.dakakeen.Order;
+import dakakeen.dakakeen.R;
+import dakakeen.dakakeen.ResponseHandler;
 
-public class EditOrder extends AppCompatActivity {
+public class CreateOrder extends AppCompatActivity implements ResponseHandler {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
+
     private EditText orderTitle, orderDescription;
     private Spinner orderCategory;
     private ImageView orderImage;
-    private String title, description, category;
-    private Order order;
 
+    private Order order = new Order();
+    private Communication communication;
 
 
     @Override
@@ -37,16 +46,13 @@ public class EditOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
 
+        communication = new Communication();
+
+        order.setUsername(getIntent().getStringExtra("username"));
+
         orderTitle= (EditText)findViewById(R.id.orderTitleEditText);
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
-
-        order = (Order)getIntent().getSerializableExtra("order");
-
-        orderTitle.setText(order.getTitle());
-        orderDescription.setText(order.getDescription());
-        orderCategory.setSelection(order.getCategory()+1);
-
 
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +62,7 @@ public class EditOrder extends AppCompatActivity {
 
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
@@ -86,33 +92,18 @@ public class EditOrder extends AppCompatActivity {
         }
     }
 
-    //Edit the current Order
+    //Create New Order for the customer
     public void submitOrder(View view){
 
         if (checkOrderInfo()){
             //send order data to the server
             RequestParams params = new RequestParams();
             params.put("customerUsername",order.getUsername());
-            params.put("orderId",order.getId());
             params.put("title",order.getTitle());
             params.put("description",order.getDescription());
             params.put("Category",order.getCategory());
 
-            final Communication communication = new Communication();
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.put(getApplicationContext(), communication.getUrl()+"/myorders", params, new AsyncHttpResponseHandler() {
-
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Toast.makeText(getApplicationContext(),R.string.order_success,Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
-                }
-            });
+            communication.post(communication.getUrl()+"/myorders", params, this);
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
@@ -136,7 +127,16 @@ public class EditOrder extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSuccess(byte[] responseBody){
+        Toast.makeText(getApplicationContext(),R.string.order_success,Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
+    @Override
+    public void onFailure(byte[] responseBody) {
+        Toast.makeText(getApplicationContext(), communication.handelError(responseBody), Toast.LENGTH_SHORT).show();
+    }
 
 }
 

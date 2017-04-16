@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import CustomerOrders.CreateOrder;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,7 +99,7 @@ public class SettingsFragment extends Fragment {
                   Log.d("changepassword","Selected");
 
               }
-              Intent i = new Intent(getContext(),CreateOrder.class);
+              Intent i = new Intent(getContext(), CreateOrder.class);
               startActivity(i);
 
           }
