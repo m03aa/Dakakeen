@@ -4,27 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="8dp"
     android:background="@color/creamy"
-    tools:context="dakakeen.dakakeen.MyOrders.ViewOrderDetails">
+    tools:context="dakakeen.dakakeen.MyOffers.CustomerOrderDetails">
 
     <ImageView
-        android:id="@+id/orderImageView"
+        android:id="@+id/orderImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="13dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/orderImageView"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/orderImage"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="match_parent"
@@ -56,32 +53,14 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:id="@+id/editOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/gray"
-            android:onClick="directToEditOrder"
-            android:text="@string/edit"
-            android:textColor="@color/creamy" />
-
-        <Button
-            android:id="@+id/deleteOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/purple"
-            android:onClick="deleteOrder"
-            android:text="@string/delete"
-            android:textColor="@color/creamy" />
-    </LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:background="@color/purple"
+        android:onClick="CreateOffer"
+        android:text="@string/create_offer"
+        android:textColor="@color/creamy" />
 
 </RelativeLayout>

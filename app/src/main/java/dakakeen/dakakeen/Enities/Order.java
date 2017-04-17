@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Enities;
 
 import java.io.Serializable;
 

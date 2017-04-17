@@ -1,4 +1,4 @@
-package dakakeen.dakakeen.provderOffers;
+package dakakeen.dakakeen.MyOffers;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,25 +11,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
 
 public class CreateOffer extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
     private EditText offerDescription, offerPrice;
+    private TextView orderTitle;
     private ImageView offerImage;
-    String description;
-    int price;
+    private String description;
+    private int price;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_offer);
 
+        order = (Order) getIntent().getSerializableExtra("order");
+
+        orderTitle = (TextView) findViewById(R.id.orderTitle);
         offerDescription = (EditText)findViewById(R.id.offerDescriptionEditText);
         offerPrice = (EditText)findViewById(R.id.priceEditText);
+
+        orderTitle.setText(order.getTitle());
 
 
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);

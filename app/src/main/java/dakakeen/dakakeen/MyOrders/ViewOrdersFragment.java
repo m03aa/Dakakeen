@@ -1,4 +1,4 @@
-package dakakeen.dakakeen.CustomerOrders;
+package dakakeen.dakakeen.MyOrders;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +20,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import dakakeen.dakakeen.Communication;
-import dakakeen.dakakeen.Order;
+import dakakeen.dakakeen.Communication.Communication;
+import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
-import dakakeen.dakakeen.ResponseHandler;
+import dakakeen.dakakeen.Communication.ResponseHandler;
 
 
 /**
@@ -179,7 +179,7 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
                 android.R.id.text1, orders);
         ordersList.setAdapter(adapter);
 
-        communication.get(communication.getUrl() + "/myorders/" + username, this);
+        //communication.get(communication.getUrl() + "/myorders/" + username, this);
     }
 
     @Override

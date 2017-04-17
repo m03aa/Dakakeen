@@ -28,9 +28,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_order">Create new order</string>
-    <string name="order_title">Order title</string>
+    <string name="order_title">Order Title</string>
     <string name="description">Description</string>
-    <string name="category">Category</string>
+    <string name="category">Categories</string>
 
 
     <string-array name="categories">
@@ -64,4 +64,5 @@
     <string name="delete_order">Do you want to delete your order?</string>
     <string name="customers_orders">Customers Orders</string>
     <string name="my_offers">My Offers</string>
+    <string name="create_offer">Create New Offer</string>
 </resources>

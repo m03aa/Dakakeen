@@ -1,4 +1,4 @@
-package dakakeen.dakakeen.CustomerOrders;
+package dakakeen.dakakeen.MyOrders;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +11,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dakakeen.dakakeen.Communication;
-import dakakeen.dakakeen.Order;
+import dakakeen.dakakeen.Communication.Communication;
+import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
-import dakakeen.dakakeen.ResponseHandler;
+import dakakeen.dakakeen.Communication.ResponseHandler;
 
 public class ViewOrderDetails extends AppCompatActivity implements ResponseHandler {
 
@@ -43,7 +43,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                 || order.getCategory() == 0){
 
             //get Order information for the server
-            communication.get(communication.getUrl() + "/order/" + order.getId(), this);
+            //communication.get(communication.getUrl() + "/order/" + order.getId(), this);
         }
     }
 

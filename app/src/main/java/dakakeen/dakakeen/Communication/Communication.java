@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Communication;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;

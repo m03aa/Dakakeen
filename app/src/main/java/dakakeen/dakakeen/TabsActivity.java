@@ -14,9 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import dakakeen.dakakeen.CustomerOrders.ViewOrdersFragment;
-import dakakeen.dakakeen.provderOffers.ViewCustomersOrders;
-import dakakeen.dakakeen.provderOffers.ViewMyOffers;
+import dakakeen.dakakeen.MyOrders.ViewOrdersFragment;
+import dakakeen.dakakeen.MyOffers.ViewOrdersCategoriesFragment;
+import dakakeen.dakakeen.MyOffers.ViewMyOffers;
 
 //i added the implements part
 public class TabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
@@ -167,7 +167,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
             else {
                 switch (position){
                     case 0:
-                        return new ViewCustomersOrders();
+                        return new ViewOrdersCategoriesFragment();
                     case 1:
                         return new ViewMyOffers();
                     case 2:
@@ -204,7 +204,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
             else {
                 switch (position) {
                     case 0:
-                        return getString(R.string.orders);
+                        return getString(R.string.category);
                     case 1:
                         return getString(R.string.my_offers);
                     case 2:

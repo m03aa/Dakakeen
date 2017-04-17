@@ -25,7 +25,7 @@
     <string name="create_order">إنشاء طلب جديد</string>
     <string name="order_title">عنوان الطلب</string>
     <string name="description">الوصف</string>
-    <string name="category">الفئة</string>
+    <string name="category">التصنيفات</string>
 
     <string-array name="categories">
         <item>لا شيء</item>
@@ -57,6 +57,7 @@
     <string name="delete_order">هل تريد حذف طلبك</string>
     <string name="customers_orders">طلبات العملاء</string>
     <string name="my_offers">عروضي</string>
+    <string name="create_offer">إنشاء عرض جديد</string>
 
 
 </resources>

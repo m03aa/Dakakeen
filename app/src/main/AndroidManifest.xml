@@ -25,10 +25,12 @@
         <activity
             android:name=".TabsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="dakakeen.dakakeen.CustomerOrders.CreateOrder" />
-        <activity android:name="dakakeen.dakakeen.CustomerOrders.EditOrder" />
-        <activity android:name="dakakeen.dakakeen.provderOffers.CreateOffer" />
-        <activity android:name="dakakeen.dakakeen.CustomerOrders.ViewOrderDetails"></activity>
+        <activity android:name=".MyOrders.CreateOrder" />
+        <activity android:name=".MyOrders.EditOrder" />
+        <activity android:name=".MyOffers.CreateOffer" />
+        <activity android:name=".MyOrders.ViewOrderDetails" />
+        <activity android:name=".MyOffers.ViewOrdersInCategory" />
+        <activity android:name=".MyOffers.CustomerOrderDetails"></activity>
     </application>
 
 </manifest>

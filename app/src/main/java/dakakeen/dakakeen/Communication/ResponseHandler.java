@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Communication;
 
 /**
  * Created by moath on 4/16/2017.
