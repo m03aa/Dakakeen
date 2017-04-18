@@ -1,13 +1,17 @@
 package dakakeen.dakakeen.MyOrders;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -50,17 +54,16 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
 
+        //when clicking on select Picture
         Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                //ask for permission to access the gallery
+                ActivityCompat.requestPermissions(CreateOrder.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
         });
 
@@ -68,11 +71,13 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
     }
 
 
+    //to get the image from gallery and place it in the image view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
@@ -82,6 +87,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+
             cursor.close();
 
             orderImage = (ImageView) findViewById(R.id.orderImageView);
@@ -136,12 +142,40 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
         Toast.makeText(getApplicationContext(), communication.handelError(responseBody), Toast.LENGTH_SHORT).show();
     }
 
+    //to close the keyboard when clicking outside the edit text
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
+    }
+
+    //to handel the permission for the gallery
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                    Intent i = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    i.setType("image/*");
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+        }
     }
 
 }
