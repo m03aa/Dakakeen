@@ -1,5 +1,8 @@
 package dakakeen.dakakeen.Enities;
 
+import android.widget.ImageView;
+
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -9,6 +12,7 @@ import java.io.Serializable;
 public class Order implements Serializable {
     private int category, state;
     private String id, title, description, username;
+    private String image;
 
 
     public String getId() {
@@ -59,8 +63,18 @@ public class Order implements Serializable {
         this.state = state;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString(){
         return title;
     }
+
+
 }

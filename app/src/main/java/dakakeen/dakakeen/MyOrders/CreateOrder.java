@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import com.loopj.android.http.RequestParams;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
@@ -39,6 +42,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
 
     private Order order = new Order();
     private Communication communication;
+    private File image;
 
 
     @Override
@@ -87,6 +91,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+            image = new File(picturePath);
 
             cursor.close();
 
@@ -106,8 +111,16 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
             params.put("title",order.getTitle());
             params.put("description",order.getDescription());
             params.put("Category",order.getCategory());
+            if (image != null) {
+                try {
+                    params.put("image", image);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            params.setForceMultipartEntityContentType(true);
 
-            //communication.post(communication.getUrl()+"/myorders", params, this);
+            communication.post(communication.getUrl()+"/myorders", params, this);
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
