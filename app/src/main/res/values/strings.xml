@@ -40,16 +40,19 @@
         <item>Fashion</item>
         <item>Accessory</item>
         <item>Painting</item>
-
-
     </string-array>
 
 
     <string-array name="settings">
         <item>Edit profile</item>
         <item>Change password</item>
-
     </string-array>
+
+    <string-array name="orderState">
+        <item>Active</item>
+        <item>Closed</item>
+    </string-array>
+
     <string name="select_picture">Select Picture</string>
     <string name="edit">Edit</string>
     <string name="username_password_contain_space">Username and Password cannot contain spaces</string>
@@ -65,4 +68,6 @@
     <string name="customers_orders">Customers Orders</string>
     <string name="my_offers">My Offers</string>
     <string name="create_offer">Create New Offer</string>
+    <string name="order_state">Order state</string>
+    <string name="no_connection">Cannot connect to the server</string>
 </resources>

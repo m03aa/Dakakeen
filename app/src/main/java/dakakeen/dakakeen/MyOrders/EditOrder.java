@@ -104,7 +104,12 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
             params.put("description",order.getDescription());
             params.put("Category",order.getCategory());
 
-            //communication.put(communication.getUrl()+"/myorders", params, this);
+            try {
+                communication.put(communication.getUrl()+"/myorders", params, this);
+            } catch (Exception e){
+
+            }
+
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();

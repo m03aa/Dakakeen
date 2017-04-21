@@ -38,12 +38,22 @@ public class CustomerOrderDetails extends AppCompatActivity implements ResponseH
         communication = new Communication();
 
         //check if we already have all the order information
-        if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null
-                || order.getCategory() == 0) {
+        /*if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null
+                || order.getCategory() == 0) {*/
 
             //get Order information for the server
-            //communication.get(communication.getUrl() + "/order/" + order.getId(), this);
-        }
+            try {
+                communication.get(communication.getUrl() + "/order/" + order.getId(), this);
+            } catch (Exception e){
+
+            }
+        /*}
+        else {*/
+
+            orderTitle.setText(order.getTitle());
+            orderDescription.setText(order.getDescription());
+
+        /*}*/
 
     }
 
@@ -64,8 +74,10 @@ public class CustomerOrderDetails extends AppCompatActivity implements ResponseH
             JSONObject jsonObject = new JSONObject(new String(responseBody));
             order.setDescription(jsonObject.getString("description"));
             order.setCategory(jsonObject.getInt("Category"));
+
             orderTitle.setText(order.getTitle());
             orderDescription.setText(order.getDescription());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

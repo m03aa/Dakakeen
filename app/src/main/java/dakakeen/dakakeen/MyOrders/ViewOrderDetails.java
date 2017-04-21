@@ -43,7 +43,12 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                 || order.getCategory() == 0){
 
             //get Order information for the server
-            //communication.get(communication.getUrl() + "/order/" + order.getId(), this);
+            try {
+                communication.get(communication.getUrl() + "/order/" + order.getId(), this);
+            }catch (Exception e){
+
+            }
+
         }
     }
 

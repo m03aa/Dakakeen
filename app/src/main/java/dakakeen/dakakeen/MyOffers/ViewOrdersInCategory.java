@@ -37,6 +37,7 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
         communication = new Communication();
 
         //to fill the listView with orders from the selected category
+        orders.clear();
         ordersList = (ListView) findViewById(R.id.ordersInCategoryList);
         adapter = new ArrayAdapter<Order>(getApplicationContext(),android.R.layout.simple_list_item_1,
                 android.R.id.text1, orders);
@@ -48,10 +49,11 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(getApplicationContext(),CustomerOrderDetails.class);
                 intent.putExtra("order",orders.get(position));
+                startActivity(intent);
             }
         });
 
-        //communication.get(communication.getUrl() + "/orders/"+category,this);
+        communication.get(communication.getUrl() + "/orders/"+category,this);
 
     }
 

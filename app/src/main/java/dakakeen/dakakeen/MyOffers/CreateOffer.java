@@ -1,10 +1,12 @@
 package dakakeen.dakakeen.MyOffers;
 
+import android.Manifest;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import dakakeen.dakakeen.Enities.Order;
+import dakakeen.dakakeen.MyOrders.CreateOrder;
 import dakakeen.dakakeen.R;
 
 public class CreateOffer extends AppCompatActivity {
@@ -41,7 +44,7 @@ public class CreateOffer extends AppCompatActivity {
         orderTitle.setText(order.getTitle());
 
 
-        Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
+        Button buttonLoadImage = (Button) findViewById(R.id.uploadPictureButton);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -52,6 +55,9 @@ public class CreateOffer extends AppCompatActivity {
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+                //ask for permission to access the gallery
+                ActivityCompat.requestPermissions(CreateOffer.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
         });
     }

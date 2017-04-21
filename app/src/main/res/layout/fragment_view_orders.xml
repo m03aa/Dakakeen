@@ -10,20 +10,57 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="@color/creamy">
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:text="@string/order_state"
+                android:textColor="@color/purple"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/orderStateSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:drawable/editbox_background"
+                android:entries="@array/orderState" />
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/ordersList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/createNewOrderButton"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ordersList"
-            android:background="@color/purple"
-            android:text="@string/create_order"
-            android:textColor="@color/creamy" />
+            android:layout_below="@+id/linearLayout6" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/createOrderFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:drawable/ic_input_add"
+            android:clickable="true"
+            app:backgroundTint="@color/purple"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
     </RelativeLayout>
 </FrameLayout>

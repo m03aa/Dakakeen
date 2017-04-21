@@ -31,7 +31,8 @@
         <activity android:name=".MyOffers.CreateOffer" />
         <activity android:name=".MyOrders.ViewOrderDetails" />
         <activity android:name=".MyOffers.ViewOrdersInCategory" />
-        <activity android:name=".MyOffers.CustomerOrderDetails"></activity>
+        <activity android:name=".MyOffers.CustomerOrderDetails" />
+        <activity android:name=".TopProviders"></activity>
     </application>
 
 </manifest>

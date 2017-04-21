@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,31 +28,18 @@ import dakakeen.dakakeen.R;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ViewOrdersFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ViewOrdersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ViewOrdersFragment extends Fragment implements ResponseHandler {
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private OnFragmentInteractionListener mListener;
 
-    private Button directToCreateOrder;
+
+    private FloatingActionButton FAB;
     private ListView ordersList;
+    private Spinner orderState;
 
     public static ArrayList<Order> orders = new ArrayList<>();
+    public static ArrayList<Order> closedOrders = new ArrayList<>();
     public static ArrayAdapter<Order> adapter;
     private String username;
 
@@ -60,21 +49,8 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ViewOrdersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ViewOrdersFragment newInstance(String param1, String param2) {
         ViewOrdersFragment fragment = new ViewOrdersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -99,32 +75,51 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_view_orders, container, false);
 
         // عشان اروح للاكتفيتي من الفراقمنت
-       View v = inflater.inflate(R.layout.fragment_view_orders, container, false);
-        directToCreateOrder = (Button)v.findViewById(R.id.createNewOrderButton);
-        directToCreateOrder.setOnClickListener(new View.OnClickListener() {
+        FAB = (FloatingActionButton)v.findViewById(R.id.createOrderFAB);
+        FAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
                 Intent intent = new Intent(getContext(),CreateOrder.class);
                 intent.putExtra("username",username);
                 startActivity(intent);
-
             }
         });
 
-
         ordersList = (ListView) v.findViewById(R.id.ordersList);
-
         //to pass an order from ordersList to viewOrderDetails
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
-                //i need to pass order id and title
                 Intent intent = new Intent(getContext(),ViewOrderDetails.class);
                 intent.putExtra("order",orders.get(position));
                 startActivity(intent);
+            }
+        });
+
+
+        orderState = (Spinner) v.findViewById(R.id.orderStateSpinner);
+        //to change the list view content based on the order state
+        orderState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position == 0){
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, orders);
+                    ordersList.setAdapter(adapter);
+                }
+                else {
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, closedOrders);
+                    ordersList.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //then nothing happen
             }
         });
 
@@ -156,16 +151,6 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -179,7 +164,13 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
                 android.R.id.text1, orders);
         ordersList.setAdapter(adapter);
 
-        //communication.get(communication.getUrl() + "/myorders/" + username, this);
+        try {
+            communication.get(communication.getUrl() + "/myorders/" + username, this);
+        }
+        catch (Exception e){
+            //Toast.makeText(getContext(),R.string.no_connection,Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -189,11 +180,18 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Order order = new Order();
+
                 order.setId(jsonObject.getString("_id"));
                 order.setUsername(username);
                 order.setTitle(jsonObject.getString("title"));
                 order.setState(jsonObject.getInt("state"));
-                orders.add(order);
+
+                if (jsonObject.getInt("state") == 0)
+                    orders.add(order);
+                else
+                    closedOrders.add(order);
+
+
                 adapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {

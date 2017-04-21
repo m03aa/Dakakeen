@@ -34,15 +34,18 @@
         <item>أزياء</item>
         <item> إكسسوارات</item>
         <item>لوحات فنية</item>
-
-
-
     </string-array>
+
     <string-array name="settings">
         <item>تعديل الملف الشخصي</item>
         <item>تغيير كلمة المرور</item>
-
     </string-array>
+
+    <string-array name="orderState">
+        <item>نشط</item>
+        <item>مغلق</item>
+    </string-array>
+
     <string name="select_picture">اختيار صورة</string>
     <string name="edit">تعديل</string>
     <string name="username_password_contain_space">اسم المستخدم و كلمة السر لا يمكن أن تحتوي على مسافات</string>
@@ -58,6 +61,8 @@
     <string name="customers_orders">طلبات العملاء</string>
     <string name="my_offers">عروضي</string>
     <string name="create_offer">إنشاء عرض جديد</string>
+    <string name="order_state">حالة الطلب</string>
+    <string name="no_connection">لا يمكن الإتصال بالخادم</string>
 
 
 </resources>

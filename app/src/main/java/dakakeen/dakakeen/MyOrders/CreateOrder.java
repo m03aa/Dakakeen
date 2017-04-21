@@ -65,6 +65,11 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
             @Override
             public void onClick(View arg0) {
 
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
                 //ask for permission to access the gallery
                 ActivityCompat.requestPermissions(CreateOrder.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -120,7 +125,12 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
             }
             params.setForceMultipartEntityContentType(true);
 
-            communication.post(communication.getUrl()+"/myorders", params, this);
+            try {
+                communication.post(communication.getUrl()+"/myorders", params, this);
+            } catch (Exception e){
+
+            }
+
         }
         else {
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
