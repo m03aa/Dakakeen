@@ -66,6 +66,20 @@ public class Communication {
         });
     }
 
+    public void delete(String url, final ResponseHandler handler){
+        client.delete(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                handler.onSuccess(responseBody);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                handler.onFailure(responseBody);
+            }
+        });
+    }
+
     public String getUrl() {
         return url;
     }

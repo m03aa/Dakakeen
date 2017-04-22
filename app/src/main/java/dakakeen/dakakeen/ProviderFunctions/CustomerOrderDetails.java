@@ -1,4 +1,4 @@
-package dakakeen.dakakeen.MyOffers;
+package dakakeen.dakakeen.ProviderFunctions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Order;
+import dakakeen.dakakeen.MyOffers.CreateOffer;
 import dakakeen.dakakeen.MyOrders.EditOrder;
 import dakakeen.dakakeen.R;
 

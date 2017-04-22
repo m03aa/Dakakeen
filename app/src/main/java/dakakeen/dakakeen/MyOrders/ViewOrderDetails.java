@@ -1,6 +1,8 @@
 package dakakeen.dakakeen.MyOrders;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
 import dakakeen.dakakeen.Communication.ResponseHandler;
+import dakakeen.dakakeen.ViewOffersForOrder;
 
 public class ViewOrderDetails extends AppCompatActivity implements ResponseHandler {
 
@@ -82,12 +85,12 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
 
 
     public void deleteOrder(View view){
-        /*new AlertDialog.Builder(getApplicationContext())
+        new AlertDialog.Builder(getApplicationContext())
                 .setMessage(R.string.delete_order)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //we will add the delete request here
+                        //communication.delete(communication.getUrl()+"/myorders/"+order.getId(),this);
                         finish();
                     }
                 })
@@ -97,6 +100,13 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                         //Nothing will happen :)
                     }
                 })
-                .show();*/
+                .show();
+    }
+
+
+    public void getOffers(View view){
+        Intent intent = new Intent(getApplicationContext(), ViewOffersForOrder.class);
+        intent.putExtra("orderId",order.getId());
+        startActivity(intent);
     }
 }

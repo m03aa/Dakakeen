@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/creamy"
-    tools:context="dakakeen.dakakeen.CustomerFunctions.TopProviders">
+    tools:context="dakakeen.dakakeen.ViewOffersForOrder">
 
     <ListView
-        android:id="@+id/TopProvidersList"
+        android:id="@+id/offersForOrderList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

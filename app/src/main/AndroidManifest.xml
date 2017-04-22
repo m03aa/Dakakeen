@@ -30,9 +30,10 @@
         <activity android:name=".MyOrders.EditOrder" />
         <activity android:name=".MyOffers.CreateOffer" />
         <activity android:name=".MyOrders.ViewOrderDetails" />
-        <activity android:name=".MyOffers.ViewOrdersInCategory" />
-        <activity android:name=".MyOffers.CustomerOrderDetails" />
-        <activity android:name=".TopProviders"></activity>
+        <activity android:name=".ProviderFunctions.ViewOrdersInCategory" />
+        <activity android:name=".ProviderFunctions.CustomerOrderDetails" />
+        <activity android:name=".CustomerFunctions.TopProviders" />
+        <activity android:name=".ViewOffersForOrder"></activity>
     </application>
 
 </manifest>

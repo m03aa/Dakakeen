@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/creamy"
-    tools:context="dakakeen.dakakeen.MyOffers.CustomerOrderDetails">
+    tools:context="dakakeen.dakakeen.ProviderFunctions.CustomerOrderDetails">
 
     <ImageView
         android:id="@+id/orderImage"

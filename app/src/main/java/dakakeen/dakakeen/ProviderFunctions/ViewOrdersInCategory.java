@@ -1,4 +1,4 @@
-package dakakeen.dakakeen.MyOffers;
+package dakakeen.dakakeen.ProviderFunctions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

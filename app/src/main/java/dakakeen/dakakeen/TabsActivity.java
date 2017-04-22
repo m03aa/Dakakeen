@@ -14,8 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import dakakeen.dakakeen.CustomerFunctions.ViewTopProvidersFragment;
 import dakakeen.dakakeen.MyOrders.ViewOrdersFragment;
-import dakakeen.dakakeen.MyOffers.ViewOrdersCategoriesFragment;
+import dakakeen.dakakeen.ProviderFunctions.ViewOrdersCategoriesFragment;
 import dakakeen.dakakeen.MyOffers.ViewMyOffers;
 
 //i added the implements part
