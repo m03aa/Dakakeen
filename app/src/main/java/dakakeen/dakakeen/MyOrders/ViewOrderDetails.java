@@ -25,6 +25,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
     private ImageView orderImage;
     private Order order;
     private Communication communication;
+    private boolean isDelete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +59,17 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
     @Override
     public void onSuccess(byte[] responseBody) {
         try {
+            if(isDelete){
+                //Toast.makeText(getApplicationContext(),R.string.order_deleted,Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else{
             JSONObject jsonObject = new JSONObject(new String(responseBody));
             order.setDescription(jsonObject.getString("description"));
             order.setCategory(jsonObject.getInt("Category"));
             orderTitle.setText(order.getTitle());
             orderDescription.setText(order.getDescription());
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,7 +97,8 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //communication.delete(communication.getUrl()+"/myorders/"+order.getId(),this);
+                        isDelete =true;
+                        communication.delete(communication.getUrl()+"/myorders/"+order.getId(),ViewOrderDetails.this);
                         finish();
                     }
                 })

@@ -64,6 +64,7 @@
     <string name="order_state">حالة الطلب</string>
     <string name="no_connection">لا يمكن الإتصال بالخادم</string>
     <string name="view_order_offers">عرض العروض الخاصة بهذا الطلب</string>
+    <string name="order_deleted">تم حذف طلبك بنجاح</string>
 
 
 </resources>

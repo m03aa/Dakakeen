@@ -6,8 +6,9 @@ package dakakeen.dakakeen.Enities;
 
 public class Offer {
 
-    private String id,description, orderId, providerUsername;
+    private String id,description, orderId, providerUsername, review;
     private double price,rating;
+    private int state;
 
     public String getId() {
         return id;
@@ -55,6 +56,22 @@ public class Offer {
 
     public void setproviderUsername(String providerUsername) {
         this.providerUsername = providerUsername;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
     }
 
     @Override

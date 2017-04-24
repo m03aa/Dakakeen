@@ -33,7 +33,8 @@
         <activity android:name=".ProviderFunctions.ViewOrdersInCategory" />
         <activity android:name=".ProviderFunctions.CustomerOrderDetails" />
         <activity android:name=".CustomerFunctions.TopProviders" />
-        <activity android:name=".ViewOffersForOrder"></activity>
+        <activity android:name=".ViewOffersForOrder" />
+        <activity android:name=".ViewOfferDetails"></activity>
     </application>
 
 </manifest>

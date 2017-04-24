@@ -2,8 +2,6 @@ package dakakeen.dakakeen.CustomerFunctions;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,6 +13,7 @@ import java.util.ArrayList;
 
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
+import dakakeen.dakakeen.CustomAdapters.CustomProviderAdapter;
 import dakakeen.dakakeen.Enities.Provider;
 import dakakeen.dakakeen.R;
 
@@ -42,8 +41,7 @@ public class TopProviders extends AppCompatActivity implements ResponseHandler {
 
         }
 
-        ArrayAdapter<Provider> adapter = new ArrayAdapter<Provider>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,providers);
+        CustomProviderAdapter adapter = new CustomProviderAdapter(getApplicationContext(), providers);
 
         topProviders.setAdapter(adapter);
 

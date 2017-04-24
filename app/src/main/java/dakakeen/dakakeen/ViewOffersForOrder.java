@@ -1,8 +1,10 @@
 package dakakeen.dakakeen;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
+import dakakeen.dakakeen.CustomAdapters.CustomOfferAdapter;
 import dakakeen.dakakeen.Enities.Offer;
 
 public class ViewOffersForOrder extends AppCompatActivity implements ResponseHandler {
@@ -23,7 +26,7 @@ public class ViewOffersForOrder extends AppCompatActivity implements ResponseHan
     private Communication communication;
 
     private ListView offersList;
-    private ArrayAdapter<Offer> adapter;
+    private CustomOfferAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,7 @@ public class ViewOffersForOrder extends AppCompatActivity implements ResponseHan
         communication = new Communication();
 
         offersList = (ListView) findViewById(R.id.offersForOrderList);
-        adapter = new ArrayAdapter<Offer>(getApplicationContext(),android.R.layout.simple_list_item_1,
-                android.R.id.text1,offers);
+        adapter = new CustomOfferAdapter(getApplicationContext(),offers);
         offersList.setAdapter(adapter);
 
         try {
@@ -43,6 +45,15 @@ public class ViewOffersForOrder extends AppCompatActivity implements ResponseHan
         }catch (Exception e){
 
         }
+
+        offersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),ViewOfferDetails.class);
+                intent.putExtra("offerId",offers.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

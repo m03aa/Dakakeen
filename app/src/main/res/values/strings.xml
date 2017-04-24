@@ -71,4 +71,5 @@
     <string name="order_state">Order state</string>
     <string name="no_connection">Cannot connect to the server</string>
     <string name="view_order_offers">View offers for this order</string>
+    <string name="order_deleted">Your order has been deleted successfully</string>
 </resources>
