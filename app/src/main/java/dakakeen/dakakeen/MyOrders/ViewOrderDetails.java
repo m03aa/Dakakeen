@@ -60,7 +60,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
     public void onSuccess(byte[] responseBody) {
         try {
             if(isDelete){
-                //Toast.makeText(getApplicationContext(),R.string.order_deleted,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.order_deleted,Toast.LENGTH_SHORT).show();
                 finish();
             }
             else{

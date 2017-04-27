@@ -175,7 +175,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:width="1dp"
-            android:text="@string/username"
+            android:text="@string/name"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintLeft_toLeftOf="parent"

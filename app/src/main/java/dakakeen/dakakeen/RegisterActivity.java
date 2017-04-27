@@ -17,10 +17,9 @@ public class RegisterActivity extends AppCompatActivity {
     private LinearLayout roleLayout, registerLayout;
     //roleLayout components
     private RadioGroup registerRole;
-    private RadioButton customer, provider;
+    private RadioButton customer;
     //registerLayout components
     private EditText username, password, email, name, nationalId, phone, address;
-    private Button registerSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
         //roleLayout components
         registerRole = (RadioGroup)findViewById(R.id.registerRole);
         customer = (RadioButton)findViewById(R.id.customerRadioButton);
-        provider = (RadioButton)findViewById(R.id.providerRadioButton);
         //registerLayout components
         username = (EditText)findViewById(R.id.registerUsernameEditText);
         password = (EditText)findViewById(R.id.registerPasswordEditText);
@@ -42,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
         nationalId = (EditText)findViewById(R.id.registerNationalIdEditText);
         phone = (EditText)findViewById(R.id.registerPhoneEditText);
         address = (EditText)findViewById(R.id.registerAddressEditText);
-        registerSubmit = (Button) findViewById(R.id.registerSubmitButton);
 
     }
 

@@ -39,7 +39,7 @@ public class CustomOfferAdapter extends ArrayAdapter<Offer> {
         TextView textView1 = (TextView)view.findViewById(R.id.customAdapterText1);
         TextView textView2 = (TextView)view.findViewById(R.id.customAdapterText2);
 
-        textView1.setText(offers.get(position).getproviderUsername());
+        textView1.setText(offers.get(position).getProvider().getName());
         textView2.setText(Double.toString(offers.get(position).getPrice()));
 
         return super.getView(position, convertView, parent);

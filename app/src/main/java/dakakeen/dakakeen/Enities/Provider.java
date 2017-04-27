@@ -6,15 +6,15 @@ package dakakeen.dakakeen.Enities;
 
 public class Provider {
 
-    private String name;
+    private String username;
     private double averageRating;
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public double getAverageRating() {
@@ -27,6 +27,6 @@ public class Provider {
 
     @Override
     public String toString(){
-        return name;
+        return username;
     }
 }

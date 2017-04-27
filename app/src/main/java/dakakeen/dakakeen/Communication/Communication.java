@@ -15,7 +15,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Communication {
 
-    private final String url = "https://dakaken.cfapps.io";
+    private final String url = "https://dakakeen.cfapps.io";
     private AsyncHttpClient client;
 
     public Communication(){

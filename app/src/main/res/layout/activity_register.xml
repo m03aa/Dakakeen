@@ -19,14 +19,14 @@
         android:visibility="invisible">
 
         <EditText
+            android:id="@+id/registerUsernameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/registerUsernameEditText"
             android:hint="@string/username"
-            android:textColorHint="@color/purple"
-            android:textColor="@color/gray" />
+            android:inputType="textPersonName"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/purple" />
 
         <EditText
             android:id="@+id/registerPasswordEditText"

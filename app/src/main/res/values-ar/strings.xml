@@ -67,6 +67,15 @@
     <string name="order_deleted">تم حذف طلبك بنجاح</string>
     <string name="OldPassword">كلمة السر</string>
     <string name="action_settings">الإعدادات</string>
+    <string name="saudi_riyal">ر.س</string>
+    <string name="accept_offer">قبول العرض</string>
+    <string name="holder_name">إسم حامل البطاقة</string>
+    <string name="card_number">الرقم السري</string>
+    <string name="expire_date">تاريخ الإنتهاء</string>
+    <string name="cvc_number">الرقم السري</string>
+    <string name="cvc_invalid">الرقم السري غير صحيح</string>
+    <string name="expire_date_invalid">تاريخ الإنتهاء غير صحيح</string>
+    <string name="card_number_invalid">رقم البطاقة غير صحيح</string>
 
 
 </resources>

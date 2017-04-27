@@ -73,4 +73,13 @@
     <string name="view_order_offers">View offers for this order</string>
     <string name="order_deleted">Your order has been deleted successfully</string>
     <string name="OldPassword">Old password</string>
+    <string name="saudi_riyal">S.R</string>
+    <string name="accept_offer">Accept Offer</string>
+    <string name="holder_name">Card holder name</string>
+    <string name="card_number">Credit card number</string>
+    <string name="cvc_number">CVC number</string>
+    <string name="expire_date">Expiration date</string>
+    <string name="cvc_invalid">Invalid CVC number</string>
+    <string name="expire_date_invalid">Invalid expiration date</string>
+    <string name="card_number_invalid">Invalid card number</string>
 </resources>

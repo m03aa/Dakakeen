@@ -1,14 +1,23 @@
 package dakakeen.dakakeen.Enities;
 
+import java.io.Serializable;
+
 /**
  * Created by Moath on 22/04/17.
  */
 
-public class Offer {
+public class Offer implements Serializable {
 
-    private String id,description, orderId, providerUsername, review;
+    private String id,description, review;
     private double price,rating;
     private int state;
+    private Order order;
+    private Provider provider;
+
+    public Offer(){
+        order = new Order();
+        provider = new Provider();
+    }
 
     public String getId() {
         return id;
@@ -24,14 +33,6 @@ public class Offer {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public double getPrice() {
@@ -50,14 +51,6 @@ public class Offer {
         this.rating = rating;
     }
 
-    public String getproviderUsername() {
-        return providerUsername;
-    }
-
-    public void setproviderUsername(String providerUsername) {
-        this.providerUsername = providerUsername;
-    }
-
     public int getState() {
         return state;
     }
@@ -74,8 +67,19 @@ public class Offer {
         this.review = review;
     }
 
-    @Override
-    public String toString(){
-        return providerUsername;
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 }

@@ -34,7 +34,8 @@
         <activity android:name=".ProviderFunctions.CustomerOrderDetails" />
         <activity android:name=".CustomerFunctions.TopProviders" />
         <activity android:name=".ViewOffersForOrder" />
-        <activity android:name=".ViewOfferDetails"></activity>
+        <activity android:name=".ViewOfferDetails" />
+        <activity android:name=".AcceptOffer"></activity>
     </application>
 
 </manifest>

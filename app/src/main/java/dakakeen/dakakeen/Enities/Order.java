@@ -11,9 +11,12 @@ import java.io.Serializable;
 
 public class Order implements Serializable {
     private int category, state;
-    private String id, title, description, username;
-    private String image;
+    private String id, title, description, username, image;
+    private User customer;
 
+    public Order(){
+        customer = new User();
+    }
 
     public String getId() {
         return id;
@@ -69,6 +72,14 @@ public class Order implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public User getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
     @Override
