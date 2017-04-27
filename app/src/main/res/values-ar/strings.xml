@@ -25,29 +25,46 @@
     <string name="create_order">إنشاء طلب جديد</string>
     <string name="order_title">عنوان الطلب</string>
     <string name="description">الوصف</string>
-    <string name="category">الفئة</string>
+    <string name="category">التصنيفات</string>
 
     <string-array name="categories">
         <item>لا شيء</item>
-        <item>الصناعات اليدوية</item>
-        <item> الإكسسوارات</item>
-        <item>العطورات</item>
         <item>أطعمة</item>
-        <item>الأزياء</item>
+        <item>صناعات يدوية</item>
+        <item>أزياء</item>
+        <item> إكسسوارات</item>
         <item>لوحات فنية</item>
-
-
-
     </string-array>
+
     <string-array name="settings">
         <item>تعديل الملف الشخصي</item>
         <item>تغيير كلمة المرور</item>
-
     </string-array>
+
+    <string-array name="orderState">
+        <item>نشط</item>
+        <item>مغلق</item>
+    </string-array>
+
     <string name="select_picture">اختيار صورة</string>
-    <string name="edit_or_delete">هل تريد التعديل أم الحذف؟</string>
     <string name="edit">تعديل</string>
-    <string name="OldPassword">كلمة المرور القديمة</string>
+    <string name="username_password_contain_space">اسم المستخدم و كلمة السر لا يمكن أن تحتوي على مسافات</string>
+    <string name="number_incorrect">الرقم المدخل غير صحيح</string>
+    <string name="short_password">كلمة المرور يجب أن تكون مكونة من ستة خانات على الأقل</string>
+    <string name="price">السعر</string>
+    <string name="top_providers">أفضل المنتجين</string>
+    <string name="order_success">تم انشاء طلبك بنجاح</string>
+    <string name="offer_success">تم انشاء عرضك بنجاح</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="delete_order">هل تريد حذف طلبك</string>
+    <string name="customers_orders">طلبات العملاء</string>
+    <string name="my_offers">عروضي</string>
+    <string name="create_offer">إنشاء عرض جديد</string>
+    <string name="order_state">حالة الطلب</string>
+    <string name="no_connection">لا يمكن الإتصال بالخادم</string>
+    <string name="view_order_offers">عرض العروض الخاصة بهذا الطلب</string>
+    <string name="order_deleted">تم حذف طلبك بنجاح</string>
 
 
 </resources>

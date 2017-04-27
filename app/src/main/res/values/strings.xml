@@ -16,7 +16,7 @@
     <string name="name">Name</string>
     <string name="nationalID">National ID</string>
     <string name="submit">Submit</string>
-    <string name="register_successful">Register successful</string>
+    <string name="register_successful">Your account has been created successful</string>
     <string name="email_correct">The Email must be valid</string>
     <string name="title_activity_tabs">tabsActivity</string>
     <string name="action_settings">Settings</string>
@@ -27,32 +27,49 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="create_order">Create order</string>
-    <string name="order_title">Order title</string>
+    <string name="create_order">Create new order</string>
+    <string name="order_title">Order Title</string>
     <string name="description">Description</string>
-    <string name="category">Category</string>
+    <string name="category">Categories</string>
 
 
     <string-array name="categories">
         <item>None</item>
-        <item>Hand craft</item>
-        <item>accessories </item>
-        <item>perfumes</item>
         <item>Food</item>
+        <item>Hand Craft</item>
         <item>Fashion</item>
+        <item>Accessory</item>
         <item>Painting</item>
-
-
     </string-array>
 
 
     <string-array name="settings">
         <item>Edit profile</item>
         <item>Change password</item>
-
     </string-array>
+
+    <string-array name="orderState">
+        <item>Active</item>
+        <item>Closed</item>
+    </string-array>
+
     <string name="select_picture">Select Picture</string>
-    <string name="edit_or_delete">Do you want to Edit or Delete?</string>
     <string name="edit">Edit</string>
-    <string name="OldPassword">Old password</string>
+    <string name="username_password_contain_space">Username and Password cannot contain spaces</string>
+    <string name="number_incorrect">The entered number is incorrect</string>
+    <string name="short_password">The password should be at least 6 characters long</string>
+    <string name="price">Price</string>
+    <string name="top_providers">Top Providers</string>
+    <string name="order_success">Your order has been created successfully</string>
+    <string name="offer_success">Your offer has been created successfully</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_order">Do you want to delete your order?</string>
+    <string name="customers_orders">Customers Orders</string>
+    <string name="my_offers">My Offers</string>
+    <string name="create_offer">Create New Offer</string>
+    <string name="order_state">Order state</string>
+    <string name="no_connection">Cannot connect to the server</string>
+    <string name="view_order_offers">View offers for this order</string>
+    <string name="order_deleted">Your order has been deleted successfully</string>
 </resources>

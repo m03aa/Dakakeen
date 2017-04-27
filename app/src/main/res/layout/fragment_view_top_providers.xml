@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/creamy"
+    tools:context="dakakeen.dakakeen.CustomerFunctions.ViewTopProvidersFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <GridLayout
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/food"
+            android:src="@drawable/food"
+            android:scaleType="centerCrop"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/handcrafts"
+            android:src="@drawable/handcrafts"
+            android:scaleType="centerCrop"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/fashion"
+            android:src="@drawable/fashion"
+            android:scaleType="centerCrop"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/accessory"
+            android:src="@drawable/accessory"
+            android:scaleType="centerCrop"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/painting"
+            android:src="@drawable/paintings"
+            android:scaleType="centerCrop"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+    </GridLayout>
+
+</FrameLayout>

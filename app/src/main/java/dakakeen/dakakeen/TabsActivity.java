@@ -2,10 +2,7 @@ package dakakeen.dakakeen;
 
 import android.app.FragmentTransaction;
 import android.net.Uri;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -15,18 +12,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+import dakakeen.dakakeen.CustomerFunctions.ViewTopProvidersFragment;
+import dakakeen.dakakeen.MyOrders.ViewOrdersFragment;
+import dakakeen.dakakeen.ProviderFunctions.ViewOrdersCategoriesFragment;
+import dakakeen.dakakeen.MyOffers.ViewMyOffers;
 
 //i added the implements part
-public class tabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
-        viewOrdersFragment.OnFragmentInteractionListener, viewOffersFragment.OnFragmentInteractionListener,
-        settingsFragment.OnFragmentInteractionListener{
+public class TabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
+        ViewOrdersFragment.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnFragmentInteractionListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -45,11 +41,16 @@ public class tabsActivity extends AppCompatActivity implements android.app.Actio
 
     //i created new action bar object
     private android.app.ActionBar actionBar;
+    private String username;
+    private int role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
+
+        username = getIntent().getStringExtra("username");
+        role = getIntent().getIntExtra("role",1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +62,7 @@ public class tabsActivity extends AppCompatActivity implements android.app.Actio
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        //i created new tab layout object
+        //create new tab layout object
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -138,33 +139,78 @@ public class tabsActivity extends AppCompatActivity implements android.app.Actio
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            switch (position){
-                case 0:
-                    return new viewOrdersFragment();
-                case 1:
-                    return new viewOffersFragment();
-                case 2:
-                    return new settingsFragment();
-                default:
-                    return null;
+
+            Bundle bundle = new Bundle();
+
+            if (role == 1){
+                switch (position){
+                    case 0:
+                        ViewOrdersFragment orders = new ViewOrdersFragment();
+                        bundle.putString("username",username);
+                        orders.setArguments(bundle);
+                        return orders;
+                    case 1:
+                        ViewOffersFragment offers = new ViewOffersFragment();
+                        bundle.putString("username",username);
+                        offers.setArguments(bundle);
+                        return offers;
+                    case 2:
+                        return new ViewTopProvidersFragment();
+                    case 3:
+                        SettingsFragment settings = new SettingsFragment();
+                        bundle.putString("username",username);
+                        settings.setArguments(bundle);
+                        return settings;
+                    default:
+                        return null;
+                }
             }
+            else {
+                switch (position){
+                    case 0:
+                        return new ViewOrdersCategoriesFragment();
+                    case 1:
+                        return new ViewMyOffers();
+                    case 2:
+                        return new SettingsFragment();
+                    default:
+                        return null;
+                }
+            }
+
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            if(role == 1)
+                return 4;
+            else
+                return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getString(R.string.orders);
-                case 1:
-                    return getString(R.string.offers);
-                case 2:
-                    return getString(R.string.settings);
+            if(role == 1){
+                switch (position) {
+                    case 0:
+                        return getString(R.string.orders);
+                    case 1:
+                        return getString(R.string.offers);
+                    case 2:
+                        return getString(R.string.top_providers);
+                    case 3:
+                        return getString(R.string.settings);
+                }
+            }
+            else {
+                switch (position) {
+                    case 0:
+                        return getString(R.string.category);
+                    case 1:
+                        return getString(R.string.my_offers);
+                    case 2:
+                        return getString(R.string.settings);
+                }
             }
             return null;
         }

@@ -21,8 +21,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkLogin(View view){
-        if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+        if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ){
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
+        }
+        else if(username.getText().toString().contains(" ") ||   password.getText().toString().contains(" ")){
+            Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
         }
         /*check database
         else if(){
@@ -30,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         }*/
         else{
             Toast.makeText(getApplicationContext(),R.string.Login_successful,Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(),tabsActivity.class);
+            Intent intent = new Intent(getApplicationContext(),TabsActivity.class);
+            intent.putExtra("username",username.getText().toString());
+            intent.putExtra("role",1);
             startActivity(intent);
             finish();
         }
