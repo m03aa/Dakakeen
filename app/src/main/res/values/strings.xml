@@ -31,8 +31,8 @@
     <string name="order_title">Order title</string>
     <string name="description">Description</string>
     <string name="category">Category</string>
-    
-    
+
+
     <string-array name="categories">
         <item>None</item>
         <item>Hand craft</item>
@@ -41,7 +41,6 @@
         <item>Food</item>
         <item>Fashion</item>
         <item>Painting</item>
-
 
 
     </string-array>
@@ -55,4 +54,5 @@
     <string name="select_picture">Select Picture</string>
     <string name="edit_or_delete">Do you want to Edit or Delete?</string>
     <string name="edit">Edit</string>
+    <string name="OldPassword">Old password</string>
 </resources>

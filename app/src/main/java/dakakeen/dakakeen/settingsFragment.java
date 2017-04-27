@@ -92,7 +92,19 @@ public class settingsFragment extends Fragment {
 
           @Override
           public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
-              if(position==0){
+            Intent i ;
+              switch (position) {
+                  case 0:
+                      i = new Intent(getContext(),EditProfile.class);
+                      startActivity(i);
+                      break;
+                  case 1:
+                       i = new Intent(getContext(),ChangePassword.class);
+                      startActivity(i);
+                      break;
+
+              }
+             /* if(position==0){
                   Log.d("editprofile","selected");
 
               }
@@ -102,6 +114,7 @@ public class settingsFragment extends Fragment {
               }
               Intent i = new Intent(getContext(),CreateOrder.class);
               startActivity(i);
+              */
 
           }
       });

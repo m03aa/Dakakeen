@@ -47,6 +47,7 @@
     <string name="select_picture">اختيار صورة</string>
     <string name="edit_or_delete">هل تريد التعديل أم الحذف؟</string>
     <string name="edit">تعديل</string>
+    <string name="OldPassword">كلمة المرور القديمة</string>
 
 
 </resources>
