@@ -45,7 +45,7 @@ public class ViewOfferDetails extends AppCompatActivity implements ResponseHandl
     }
 
     public void directToPayment(View view){
-        Intent intent = new Intent(getApplicationContext(), AcceptOffer.class);
+        Intent intent = new Intent(getApplicationContext(), MakePayment.class);
         intent.putExtra("offer",offer);
         startActivity(intent);
     }

@@ -1,12 +1,15 @@
 package dakakeen.dakakeen.Enities;
 
+import java.io.Serializable;
+
 /**
  * Created by moath on 4/27/2017.
  */
 
-public class User {
+public class Account implements Serializable {
 
     private String username, password, email, name, address, phone, nationalId;
+    private int role;
     private boolean banned;
 
     public String getUsername() {
@@ -73,4 +76,11 @@ public class User {
         this.banned = banned;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 }

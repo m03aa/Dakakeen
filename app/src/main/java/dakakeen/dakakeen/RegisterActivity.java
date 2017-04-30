@@ -3,6 +3,7 @@ package dakakeen.dakakeen;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+import com.loopj.android.http.RequestParams;
+
+import dakakeen.dakakeen.Communication.Communication;
+import dakakeen.dakakeen.Communication.ResponseHandler;
+import dakakeen.dakakeen.Enities.Account;
+
+public class RegisterActivity extends AppCompatActivity implements ResponseHandler {
 
     //Activity Layouts
     private LinearLayout roleLayout, registerLayout;
@@ -58,68 +65,95 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void checkRegister(View view){
-        if(registerRole.getCheckedRadioButtonId() == customer.getId()){
-            if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ||
-                    email.getText().toString().isEmpty() || address.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
-            }
-            else if(username.getText().toString().contains(" ") ||   password.getText().toString().contains(" ")){
-                Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
-            }
-            /*check database
-            else if(){
 
-            }*/
-            else{
-                if (password.getText().toString().length() < 6){
-                    Toast.makeText(getApplicationContext(),R.string.short_password,Toast.LENGTH_SHORT).show();
-                }
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
-                    Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
+        Account account = new Account();
+        RequestParams params = new RequestParams();
 
-        }
-        else{
-            if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ||
-                    email.getText().toString().isEmpty() || address.getText().toString().isEmpty()
-                    && name.getText().toString().isEmpty() || nationalId.getText().toString().isEmpty() ||
-                    phone.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
-            }
-            else if(username.getText().toString().contains(" ") ||   password.getText().toString().contains(" ")){
-                Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
-            }
-            /*check database
-            else if(){
+        //for customer and provider
+        account.setUsername(username.getText().toString());
+        account.setPassword(password.getText().toString());
+        account.setEmail(email.getText().toString());
+        account.setAddress(address.getText().toString());
+        //for provider only
+        account.setName(name.getText().toString());
+        account.setNationalId(nationalId.getText().toString());
+        account.setPhone(phone.getText().toString());
 
-            }*/
-            else{
-                if (password.getText().toString().length() < 6){
-                    Toast.makeText(getApplicationContext(),R.string.short_password,Toast.LENGTH_SHORT).show();
-                }
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
-                    Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
-                }
-                else if(nationalId.getText().toString().length() != 10){
+        //check if there is a missing field
+        if(account.getUsername().isEmpty() || account.getPassword().isEmpty() || account.getEmail().isEmpty()
+                || account.getAddress().isEmpty())
+            Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
+
+            //if username or password contains spaces
+        else
+        if(account.getUsername().contains(" ") ||   account.getPassword().contains(" "))
+            Toast.makeText(getApplicationContext(),R.string.username_password_contain_space,Toast.LENGTH_LONG).show();
+
+            //if the password length less than 6
+        else
+        if (account.getPassword().length() < 6)
+            Toast.makeText(getApplicationContext(),R.string.short_password,Toast.LENGTH_SHORT).show();
+            //check email format
+        else
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(account.getEmail()).matches())
+            Toast.makeText(getApplicationContext(),R.string.email_correct,Toast.LENGTH_SHORT).show();
+        else {
+            params.put("username", account.getUsername());
+            params.put("password", account.getPassword());
+            params.put("email", account.getEmail());
+            params.put("address", account.getAddress());
+
+            //for provider
+            if (registerRole.getCheckedRadioButtonId() != customer.getId()){
+                //check if there is a missing field
+                if(account.getName().isEmpty() || account.getNationalId().isEmpty() || account.getPhone().isEmpty())
+                    Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
+
+                    //check nationalId length
+                else if(account.getNationalId().length() != 10)
                     Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
-                }
-                else if (phone.getText().toString().length() != 10){
+
+                    //check phone length
+                else if (account.getPhone().length() != 10)
                     Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
+
+                    //if everything is fine create new customer account
+                else {
+                    params.put("role", 2);
+                    params.put("name", account.getName());
+                    params.put("nationalId", account.getNationalId());
+                    params.put("phone", account.getPhone());
                 }
-                else{
-                    Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+            }
+            else {
+                params.put("role", 1);
+            }
+
+            try {
+                Communication.post(Communication.getUrl()+"/auth/register", params, this);
+            } catch (Exception e){
+                Log.i("Communication", e.getMessage());
             }
         }
     }
+
+
+
+
+
+    @Override
+    public void onSuccess(byte[] responseBody){
+        Toast.makeText(getApplicationContext(),R.string.register_successful,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onFailure(byte[] responseBody){
+        Toast.makeText(getApplicationContext(), Communication.handelError(responseBody), Toast.LENGTH_SHORT);
+    }
+
+
 }

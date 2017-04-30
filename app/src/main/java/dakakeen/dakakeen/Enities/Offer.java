@@ -11,12 +11,14 @@ public class Offer implements Serializable {
     private String id,description, review;
     private double price,rating;
     private int state;
-    private Order order;
-    private Provider provider;
+    public Order order;
+    public Provider provider;
+    public Payment payment;
 
     public Offer(){
         order = new Order();
         provider = new Provider();
+        payment = new Payment();
     }
 
     public String getId() {

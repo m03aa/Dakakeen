@@ -82,4 +82,5 @@
     <string name="cvc_invalid">Invalid CVC number</string>
     <string name="expire_date_invalid">Invalid expiration date</string>
     <string name="card_number_invalid">Invalid card number</string>
+    <string name="payment_success">Your transaction has been made successfully</string>
 </resources>

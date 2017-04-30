@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import dakakeen.dakakeen.CustomerFunctions.ViewTopProvidersFragment;
+import dakakeen.dakakeen.Enities.Account;
 import dakakeen.dakakeen.MyOrders.ViewOrdersFragment;
 import dakakeen.dakakeen.ProviderFunctions.ViewOrdersCategoriesFragment;
 import dakakeen.dakakeen.MyOffers.ViewMyOffers;
@@ -24,14 +25,6 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
         ViewOrdersFragment.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener{
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -41,16 +34,14 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
     //i created new action bar object
     private android.app.ActionBar actionBar;
-    private String username;
-    private int role;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
 
-        username = getIntent().getStringExtra("username");
-        role = getIntent().getIntExtra("role",1);
+        account = (Account) getIntent().getSerializableExtra("account");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -142,23 +133,23 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
             Bundle bundle = new Bundle();
 
-            if (role == 1){
+            if (account.getRole() == 1){
                 switch (position){
                     case 0:
                         ViewOrdersFragment orders = new ViewOrdersFragment();
-                        bundle.putString("username",username);
+                        bundle.putString("username",account.getUsername());
                         orders.setArguments(bundle);
                         return orders;
                     case 1:
                         ViewOffersFragment offers = new ViewOffersFragment();
-                        bundle.putString("username",username);
+                        bundle.putString("username",account.getUsername());
                         offers.setArguments(bundle);
                         return offers;
                     case 2:
                         return new ViewTopProvidersFragment();
                     case 3:
                         SettingsFragment settings = new SettingsFragment();
-                        bundle.putString("username",username);
+                        bundle.putString("username",account.getUsername());
                         settings.setArguments(bundle);
                         return settings;
                     default:
@@ -182,7 +173,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
         @Override
         public int getCount() {
-            if(role == 1)
+            if(account.getRole() == 1)
                 return 4;
             else
                 return 3;
@@ -190,7 +181,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
         @Override
         public CharSequence getPageTitle(int position) {
-            if(role == 1){
+            if(account.getRole() == 1){
                 switch (position) {
                     case 0:
                         return getString(R.string.orders);

@@ -76,6 +76,7 @@
     <string name="cvc_invalid">الرقم السري غير صحيح</string>
     <string name="expire_date_invalid">تاريخ الإنتهاء غير صحيح</string>
     <string name="card_number_invalid">رقم البطاقة غير صحيح</string>
+    <string name="payment_success">تم عملية الدفع بنجاح</string>
 
 
 </resources>

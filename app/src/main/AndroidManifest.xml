@@ -35,7 +35,7 @@
         <activity android:name=".CustomerFunctions.TopProviders" />
         <activity android:name=".ViewOffersForOrder" />
         <activity android:name=".ViewOfferDetails" />
-        <activity android:name=".AcceptOffer"></activity>
+        <activity android:name=".MakePayment"></activity>
     </application>
 
 </manifest>

@@ -15,14 +15,14 @@ import cz.msebera.android.httpclient.Header;
 
 public class Communication {
 
-    private final String url = "https://dakakeen.cfapps.io";
-    private AsyncHttpClient client;
+    private static final String url = "https://dakakeen.cfapps.io";
+    private static AsyncHttpClient client;
 
     public Communication(){
         client = new AsyncHttpClient();
     }
 
-    public void get(String url, final ResponseHandler handler){
+    public static void get(String url, final ResponseHandler handler){
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -37,7 +37,7 @@ public class Communication {
         });
     }
 
-    public void post(String url, RequestParams params, final ResponseHandler handler){
+    public static void post(String url, RequestParams params, final ResponseHandler handler){
 
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
@@ -52,7 +52,7 @@ public class Communication {
         });
     }
 
-    public void put(String url, RequestParams params, final ResponseHandler handler){
+    public static void put(String url, RequestParams params, final ResponseHandler handler){
         client.put(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -66,7 +66,7 @@ public class Communication {
         });
     }
 
-    public void delete(String url, final ResponseHandler handler){
+    public static void delete(String url, final ResponseHandler handler){
         client.delete(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -80,11 +80,11 @@ public class Communication {
         });
     }
 
-    public String getUrl() {
+    public static String getUrl() {
         return url;
     }
 
-    public String handelError(byte[] responseBody){
+    public static String handelError(byte[] responseBody){
         try {
             JSONObject jsonObject = new JSONObject(new String(responseBody));
             return jsonObject.getString("message");
