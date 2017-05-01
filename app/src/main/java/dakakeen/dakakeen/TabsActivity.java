@@ -16,13 +16,13 @@ import android.view.MenuItem;
 
 import dakakeen.dakakeen.CustomerFunctions.ViewTopProvidersFragment;
 import dakakeen.dakakeen.Enities.Account;
-import dakakeen.dakakeen.MyOrders.ViewOrdersFragment;
+import dakakeen.dakakeen.MyOrders.ViewMyOrders;
 import dakakeen.dakakeen.ProviderFunctions.ViewOrdersCategoriesFragment;
 import dakakeen.dakakeen.MyOffers.ViewMyOffers;
 
 //i added the implements part
 public class TabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
-        ViewOrdersFragment.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,
+        ViewMyOrders.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -136,7 +136,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
             if (account.getRole() == 1){
                 switch (position){
                     case 0:
-                        ViewOrdersFragment orders = new ViewOrdersFragment();
+                        ViewMyOrders orders = new ViewMyOrders();
                         bundle.putString("username",account.getUsername());
                         orders.setArguments(bundle);
                         return orders;

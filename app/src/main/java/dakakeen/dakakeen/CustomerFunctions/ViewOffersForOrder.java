@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.CustomerFunctions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.CustomAdapters.CustomOfferAdapter;
 import dakakeen.dakakeen.Enities.Offer;
+import dakakeen.dakakeen.R;
 
 public class ViewOffersForOrder extends AppCompatActivity implements ResponseHandler {
 

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -30,7 +29,7 @@ import dakakeen.dakakeen.Communication.ResponseHandler;
 
 
 
-public class ViewOrdersFragment extends Fragment implements ResponseHandler {
+public class ViewMyOrders extends Fragment implements ResponseHandler {
 
     private OnFragmentInteractionListener mListener;
 
@@ -46,12 +45,12 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
 
     private Communication communication;
 
-    public ViewOrdersFragment() {
+    public ViewMyOrders() {
         // Required empty public constructor
     }
 
-    public static ViewOrdersFragment newInstance(String param1, String param2) {
-        ViewOrdersFragment fragment = new ViewOrdersFragment();
+    public static ViewMyOrders newInstance(String param1, String param2) {
+        ViewMyOrders fragment = new ViewMyOrders();
         return fragment;
     }
 
@@ -76,7 +75,7 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_view_orders, container, false);
+        View v = inflater.inflate(R.layout.fragment_view_my_orders, container, false);
 
         // عشان اروح للاكتفيتي من الفراقمنت
         FAB = (FloatingActionButton)v.findViewById(R.id.createOrderFAB);
@@ -202,6 +201,6 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
 
     @Override
     public void onFailure(byte[] responseBody) {
-        //Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
     }
 }

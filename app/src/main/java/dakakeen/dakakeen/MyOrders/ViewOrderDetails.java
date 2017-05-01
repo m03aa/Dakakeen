@@ -17,7 +17,7 @@ import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
 import dakakeen.dakakeen.Communication.ResponseHandler;
-import dakakeen.dakakeen.ViewOffersForOrder;
+import dakakeen.dakakeen.CustomerFunctions.ViewOffersForOrder;
 
 public class ViewOrderDetails extends AppCompatActivity implements ResponseHandler {
 
@@ -39,7 +39,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
         orderImage = (ImageView)findViewById(R.id.orderImageView);
 
 
-        //get the passed order from ViewOrdersFragment
+        //get the passed order from ViewMyOrders
         order = (Order)getIntent().getSerializableExtra("order");
 
         //check if we already have all the order information

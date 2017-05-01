@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import dakakeen.dakakeen.Authentication.LoginActivity;
+import dakakeen.dakakeen.Authentication.RegisterActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Authentication;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import com.loopj.android.http.RequestParams;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Account;
+import dakakeen.dakakeen.MainActivity;
+import dakakeen.dakakeen.R;
 
 public class RegisterActivity extends AppCompatActivity implements ResponseHandler {
 

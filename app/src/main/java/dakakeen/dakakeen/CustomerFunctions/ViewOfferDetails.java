@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.CustomerFunctions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import org.json.JSONObject;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Offer;
+import dakakeen.dakakeen.MakePayment;
+import dakakeen.dakakeen.R;
 
 public class ViewOfferDetails extends AppCompatActivity implements ResponseHandler {
 

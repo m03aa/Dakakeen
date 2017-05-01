@@ -20,10 +20,14 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
     private TextView price;
     private EditText holderName, cardNumber, cvcNumber, emonth, eyear;
 
+    private Communication communication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_payment);
+
+        communication = new Communication(getApplicationContext());
 
         offer = (Offer) getIntent().getSerializableExtra("offer");
 
@@ -54,7 +58,7 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
                 params.put("name", offer.payment.getHolderName());
 
             try {
-                Communication.post(Communication.getUrl()+"/offers/accept", params, this);
+                communication.post(communication.getUrl()+"/offers/accept", params, this);
             } catch (Exception e){
 
             }
@@ -93,7 +97,7 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
     @Override
     public void onFailure(byte[] responseBody){
 
-        Toast.makeText(getApplicationContext(), Communication.handelError(responseBody) ,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), communication.handelError(responseBody) ,Toast.LENGTH_SHORT).show();
     }
 
 }

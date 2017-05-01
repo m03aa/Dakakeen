@@ -53,6 +53,14 @@
         <item>Closed</item>
     </string-array>
 
+    <string-array name="offerState">
+        <item>Active</item>
+        <item>Closed</item>
+        <item>Accepted</item>
+        <item>Delivered</item>
+        <item>On route</item>
+    </string-array>
+
     <string name="select_picture">Select Picture</string>
     <string name="edit">Edit</string>
     <string name="username_password_contain_space">Username and Password cannot contain spaces</string>
@@ -83,4 +91,5 @@
     <string name="expire_date_invalid">Invalid expiration date</string>
     <string name="card_number_invalid">Invalid card number</string>
     <string name="payment_success">Your transaction has been made successfully</string>
+    <string name="offer_state">Offer state</string>
 </resources>

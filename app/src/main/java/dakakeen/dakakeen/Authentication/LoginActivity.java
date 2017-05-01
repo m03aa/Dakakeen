@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Authentication;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Account;
+import dakakeen.dakakeen.R;
+import dakakeen.dakakeen.TabsActivity;
 
 public class LoginActivity extends AppCompatActivity implements ResponseHandler{
 

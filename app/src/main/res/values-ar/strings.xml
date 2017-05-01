@@ -46,6 +46,14 @@
         <item>مغلق</item>
     </string-array>
 
+    <string-array name="offerState">
+        <item>نشط</item>
+        <item>مغلق</item>
+        <item>مقبول</item>
+        <item>تم التوصيل</item>
+        <item>فالطريق</item>
+    </string-array>
+
     <string name="select_picture">اختيار صورة</string>
     <string name="edit">تعديل</string>
     <string name="username_password_contain_space">اسم المستخدم و كلمة السر لا يمكن أن تحتوي على مسافات</string>
@@ -77,6 +85,7 @@
     <string name="expire_date_invalid">تاريخ الإنتهاء غير صحيح</string>
     <string name="card_number_invalid">رقم البطاقة غير صحيح</string>
     <string name="payment_success">تم عملية الدفع بنجاح</string>
+    <string name="offer_state">حالة العرض</string>
 
 
 </resources>

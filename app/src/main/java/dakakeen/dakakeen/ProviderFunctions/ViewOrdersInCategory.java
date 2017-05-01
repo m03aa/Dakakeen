@@ -3,6 +3,7 @@ package dakakeen.dakakeen.ProviderFunctions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,7 +54,12 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
             }
         });
 
-        communication.get(communication.getUrl() + "/orders/"+category,this);
+        try{
+            communication.get(communication.getUrl() + "/orders/"+category,this);
+        } catch (Exception e){
+            Log.d("Communication Exception", e.getMessage());
+        }
+
 
     }
 

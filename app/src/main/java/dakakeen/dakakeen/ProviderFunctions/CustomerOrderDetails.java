@@ -39,8 +39,7 @@ public class CustomerOrderDetails extends AppCompatActivity implements ResponseH
         communication = new Communication(getApplicationContext());
 
         //check if we already have all the order information
-        /*if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null
-                || order.getCategory() == 0) {*/
+        if (order.getId() == null || order.getUsername() == null || order.getTitle() == null || order.getDescription() == null) {
 
             //get Order information for the server
             try {
@@ -48,13 +47,13 @@ public class CustomerOrderDetails extends AppCompatActivity implements ResponseH
             } catch (Exception e){
 
             }
-        /*}
-        else {*/
+        }
+        else {
 
             orderTitle.setText(order.getTitle());
             orderDescription.setText(order.getDescription());
 
-        /*}*/
+        }
 
     }
 

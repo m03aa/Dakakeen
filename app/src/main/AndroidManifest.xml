@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Authentication.LoginActivity" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Authentication.RegisterActivity"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".TabsActivity"
@@ -33,8 +33,8 @@
         <activity android:name=".ProviderFunctions.ViewOrdersInCategory" />
         <activity android:name=".ProviderFunctions.CustomerOrderDetails" />
         <activity android:name=".CustomerFunctions.TopProviders" />
-        <activity android:name=".ViewOffersForOrder" />
-        <activity android:name=".ViewOfferDetails" />
+        <activity android:name=".CustomerFunctions.ViewOffersForOrder" />
+        <activity android:name=".CustomerFunctions.ViewOfferDetails" />
         <activity android:name=".MakePayment"></activity>
     </application>
 
