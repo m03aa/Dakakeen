@@ -43,7 +43,7 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         orderTitle= (EditText)findViewById(R.id.orderTitleEditText);
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);

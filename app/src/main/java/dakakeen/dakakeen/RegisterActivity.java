@@ -28,10 +28,14 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
     //registerLayout components
     private EditText username, password, email, name, nationalId, phone, address;
 
+    private Communication communication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        communication = new Communication(getApplicationContext());
 
         //Activity Layouts
         roleLayout = (LinearLayout)findViewById(R.id.roleLinearLayout);
@@ -57,9 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
         }
         else{
             roleLayout.setVisibility(View.INVISIBLE);
-            name.setVisibility(View.VISIBLE);
             nationalId.setVisibility(View.VISIBLE);
-            phone.setVisibility(View.VISIBLE);
             registerLayout.setVisibility(View.VISIBLE);
         }
     }
@@ -81,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
 
         //check if there is a missing field
         if(account.getUsername().isEmpty() || account.getPassword().isEmpty() || account.getEmail().isEmpty()
-                || account.getAddress().isEmpty())
+                || account.getAddress().isEmpty() || account.getName().isEmpty() || account.getPhone().isEmpty())
             Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
 
             //if username or password contains spaces
@@ -102,16 +104,16 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
             params.put("password", account.getPassword());
             params.put("email", account.getEmail());
             params.put("address", account.getAddress());
+            params.put("name", account.getName());
+            params.put("phone", account.getPhone());
 
             //for provider
             if (registerRole.getCheckedRadioButtonId() != customer.getId()){
-                //check if there is a missing field
-                if(account.getName().isEmpty() || account.getNationalId().isEmpty() || account.getPhone().isEmpty())
+                if (account.getNationalId().isEmpty())
                     Toast.makeText(getApplicationContext(),R.string.all_fields_required,Toast.LENGTH_SHORT).show();
-
-                    //check nationalId length
-                else if(account.getNationalId().length() != 10)
-                    Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
+            //check nationalId length
+            if(account.getNationalId().length() != 10)
+                Toast.makeText(getApplicationContext(),R.string.number_incorrect,Toast.LENGTH_SHORT).show();
 
                     //check phone length
                 else if (account.getPhone().length() != 10)
@@ -120,9 +122,7 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
                     //if everything is fine create new customer account
                 else {
                     params.put("role", 2);
-                    params.put("name", account.getName());
                     params.put("nationalId", account.getNationalId());
-                    params.put("phone", account.getPhone());
                 }
 
             }
@@ -131,9 +131,9 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
             }
 
             try {
-                Communication.post(Communication.getUrl()+"/auth/register", params, this);
+                communication.post(communication.getUrl()+"/auth/register", params, this);
             } catch (Exception e){
-                Log.i("Communication", e.getMessage());
+                Log.e("Communication Exception", e.getMessage());
             }
         }
     }
@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity implements ResponseHandl
 
     @Override
     public void onFailure(byte[] responseBody){
-        Toast.makeText(getApplicationContext(), Communication.handelError(responseBody), Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(), communication.handelError(responseBody), Toast.LENGTH_SHORT).show();
     }
 
 

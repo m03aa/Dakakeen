@@ -1,7 +1,10 @@
 package dakakeen.dakakeen.Communication;
 
+import android.content.Context;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
@@ -16,13 +19,17 @@ import cz.msebera.android.httpclient.Header;
 public class Communication {
 
     private static final String url = "https://dakakeen.cfapps.io";
-    private static AsyncHttpClient client;
+    private  AsyncHttpClient client = new AsyncHttpClient();
+    PersistentCookieStore myCookieStore;
 
-    public Communication(){
+    public Communication(Context context){
+
         client = new AsyncHttpClient();
+        myCookieStore = new PersistentCookieStore(context);
+        client.setCookieStore(myCookieStore);
     }
 
-    public static void get(String url, final ResponseHandler handler){
+    public void get(String url, final ResponseHandler handler){
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -37,7 +44,7 @@ public class Communication {
         });
     }
 
-    public static void post(String url, RequestParams params, final ResponseHandler handler){
+    public void post(String url, RequestParams params, final ResponseHandler handler){
 
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
@@ -52,7 +59,7 @@ public class Communication {
         });
     }
 
-    public static void put(String url, RequestParams params, final ResponseHandler handler){
+    public void put(String url, RequestParams params, final ResponseHandler handler){
         client.put(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -66,7 +73,7 @@ public class Communication {
         });
     }
 
-    public static void delete(String url, final ResponseHandler handler){
+    public void delete(String url, final ResponseHandler handler){
         client.delete(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -80,11 +87,11 @@ public class Communication {
         });
     }
 
-    public static String getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public static String handelError(byte[] responseBody){
+    public String handelError(byte[] responseBody){
         try {
             JSONObject jsonObject = new JSONObject(new String(responseBody));
             return jsonObject.getString("message");

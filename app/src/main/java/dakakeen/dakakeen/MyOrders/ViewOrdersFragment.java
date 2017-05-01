@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
             username = getArguments().getString("username");
         }
 
-        communication = new Communication();
+        communication = new Communication(getContext());
     }
 
     //to refresh the orders list continuously
@@ -165,10 +166,10 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
         ordersList.setAdapter(adapter);
 
         try {
-            communication.get(communication.getUrl() + "/myorders/" + username, this);
+            communication.get(communication.getUrl() + "/myorders/", this);
         }
         catch (Exception e){
-            //Toast.makeText(getContext(),R.string.no_connection,Toast.LENGTH_SHORT).show();
+            Log.e("Communication Exception", e.getMessage());
         }
 
     }
@@ -201,6 +202,6 @@ public class ViewOrdersFragment extends Fragment implements ResponseHandler {
 
     @Override
     public void onFailure(byte[] responseBody) {
-        Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
     }
 }

@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
 
     private EditText username, password;
     private Account account = new Account();
+    private Communication communication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
 
         username = (EditText)findViewById(R.id.usernameEditText);
         password = (EditText)findViewById(R.id.passwordEditText);
+
+        communication = new Communication(getApplicationContext());
     }
 
     public void checkLogin(View view){
@@ -49,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
             params.put("password", account.getPassword());
 
             try {
-                Communication.post(Communication.getUrl()+"/auth/login", params, this);
+                communication.post(communication.getUrl()+"/auth/login", params, this);
             } catch (Exception e){
                 Log.i("Exception", e.getMessage());
             }
@@ -67,7 +70,9 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
             account.setAddress(jsonObject.getString("address"));
             account.setPhone(jsonObject.getString("phone"));
             //check omar - no nationalId !!
-            account.setBanned(jsonObject.getBoolean("banned"));
+            account.setBanned(jsonObject.getBoolean("isbanned"));
+
+            Log.i("success", new String(responseBody));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -82,6 +87,6 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
 
     @Override
     public void onFailure(byte[] responseBody){
-        Toast.makeText(getApplicationContext(),Communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
     }
 }

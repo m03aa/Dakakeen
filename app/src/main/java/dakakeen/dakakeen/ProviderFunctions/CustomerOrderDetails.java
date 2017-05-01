@@ -36,7 +36,7 @@ public class CustomerOrderDetails extends AppCompatActivity implements ResponseH
         orderDescription = (TextView) findViewById(R.id.orderDescription);
         orderImage = (ImageView) findViewById(R.id.orderImage);
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         //check if we already have all the order information
         /*if (order.getId().isEmpty() || order.getUsername().isEmpty() || order.getTitle().isEmpty() || order.getDescription() == null

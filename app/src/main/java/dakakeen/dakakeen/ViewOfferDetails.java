@@ -35,7 +35,7 @@ public class ViewOfferDetails extends AppCompatActivity implements ResponseHandl
 
         offer= (Offer) getIntent().getSerializableExtra("offer");
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         try{
             communication.get(communication.getUrl()+"/offer/"+offer.getId(),this);

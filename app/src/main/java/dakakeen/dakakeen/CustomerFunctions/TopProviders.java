@@ -33,7 +33,7 @@ public class TopProviders extends AppCompatActivity implements ResponseHandler {
 
         topProviders = (ListView) findViewById(R.id.TopProvidersList);
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
         try {
             communication.get(communication.getUrl() + "/top/" + category,this);
         }

@@ -34,7 +34,7 @@ public class ViewOffersForOrder extends AppCompatActivity implements ResponseHan
         setContentView(R.layout.activity_view_offers_for_order);
 
         orderId= getIntent().getStringExtra("orderId");
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         offersList = (ListView) findViewById(R.id.offersForOrderList);
         adapter = new CustomOfferAdapter(getApplicationContext(),offers);

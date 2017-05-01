@@ -50,7 +50,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         order.setUsername(getIntent().getStringExtra("username"));
 
@@ -128,7 +128,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
             try {
                 communication.post(communication.getUrl()+"/myorders", params, this);
             } catch (Exception e){
-
+                Log.e("Communication Exception",e.getMessage());
             }
 
         }

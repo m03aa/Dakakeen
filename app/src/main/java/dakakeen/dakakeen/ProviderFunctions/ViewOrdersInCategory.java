@@ -34,7 +34,7 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
         setContentView(R.layout.activity_view_orders_in_category);
 
         category = getIntent().getIntExtra("category",0);
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         //to fill the listView with orders from the selected category
         orders.clear();

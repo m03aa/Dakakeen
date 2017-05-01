@@ -60,15 +60,26 @@
             android:textColorHint="@color/purple" />
 
         <EditText
+            android:id="@+id/registerNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/registerNameEditText"
             android:hint="@string/name"
+            android:inputType="textPersonName"
             android:textColor="@color/gray"
             android:textColorHint="@color/purple"
-            android:visibility="invisible" />
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/registerPhoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="numberSigned"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/purple"
+            android:visibility="visible" />
 
         <EditText
             android:layout_width="match_parent"
@@ -77,17 +88,6 @@
             android:ems="10"
             android:id="@+id/registerNationalIdEditText"
             android:hint="@string/nationalID"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/purple"
-            android:visibility="invisible" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:ems="10"
-            android:id="@+id/registerPhoneEditText"
-            android:hint="@string/phone"
             android:textColor="@color/gray"
             android:textColorHint="@color/purple"
             android:visibility="invisible" />

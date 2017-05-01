@@ -32,7 +32,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_details);
 
-        communication = new Communication();
+        communication = new Communication(getApplicationContext());
 
         orderTitle = (TextView) findViewById(R.id.orderTitle);
         orderDescription = (TextView)findViewById(R.id.orderDescription);
