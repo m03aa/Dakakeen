@@ -14,13 +14,12 @@ import org.json.JSONObject;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Offer;
-import dakakeen.dakakeen.MakePayment;
 import dakakeen.dakakeen.R;
 
 public class ViewOfferDetails extends AppCompatActivity implements ResponseHandler {
 
     private Communication communication;
-    private Offer offer;
+    private Offer offer = new Offer();
 
     private TextView providerUsername, offerDescription, offerPrice;
     private ImageView offerImage;
@@ -35,7 +34,7 @@ public class ViewOfferDetails extends AppCompatActivity implements ResponseHandl
         offerPrice = (TextView) findViewById(R.id.price);
         offerImage = (ImageView) findViewById(R.id.offerImage);
 
-        offer= (Offer) getIntent().getSerializableExtra("offer");
+        offer.setId(getIntent().getStringExtra("offerId"));
 
         communication = new Communication(getApplicationContext());
 
@@ -48,8 +47,10 @@ public class ViewOfferDetails extends AppCompatActivity implements ResponseHandl
 
     public void directToPayment(View view){
         Intent intent = new Intent(getApplicationContext(), MakePayment.class);
-        intent.putExtra("offer",offer);
+        intent.putExtra("offerId",offer.getId());
+        intent.putExtra("price", offer.getPrice());
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -57,8 +58,10 @@ public class ViewOfferDetails extends AppCompatActivity implements ResponseHandl
         try {
 
             JSONObject jsonObject = new JSONObject(new String(responseBody));
-            offerDescription.setText(jsonObject.getString("description"));
-            offerPrice.setText(Double.toString(offer.getPrice())+" "+Integer.toString(R.string.saudi_riyal));
+            offer.setDescription(jsonObject.getString("description"));
+            offerDescription.setText(offer.getDescription());
+            offer.setPrice(jsonObject.getInt("price"));
+            offerPrice.setText(Double.toString(offer.getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));
 
 
         } catch (JSONException e) {

@@ -25,7 +25,7 @@ public class CustomProviderAdapter extends ArrayAdapter<Provider> {
 
 
     public CustomProviderAdapter(Context context, ArrayList<Provider> providers) {
-        super(context, R.layout.customadapter);
+        super(context, R.layout.customadapter, providers);
 
         this.context = context;
         this.providers = providers;
@@ -41,9 +41,9 @@ public class CustomProviderAdapter extends ArrayAdapter<Provider> {
         TextView textView1 = (TextView) view.findViewById(R.id.customAdapterText1);
         TextView textView2 = (TextView) view.findViewById(R.id.customAdapterText2);
 
-        textView1.setText(providers.get(position).getName());
-        textView2.setText(Double.toString(providers.get(position).getAverageRating()));
+        textView1.setText(context.getResources().getString(R.string.provider)+": "+providers.get(position).getName());
+        textView2.setText(context.getResources().getString(R.string.average_rating)+": "+Double.toString(providers.get(position).getAverageRating())+" "+context.getResources().getString(R.string.out_of));
 
-        return super.getView(position, convertView, parent);
+        return view;
     }
 }

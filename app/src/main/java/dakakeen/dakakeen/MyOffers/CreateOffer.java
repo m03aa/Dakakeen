@@ -56,7 +56,7 @@ public class CreateOffer extends AppCompatActivity implements ResponseHandler{
         offerDescription = (EditText)findViewById(R.id.offerDescriptionEditText);
         offerPrice = (EditText)findViewById(R.id.priceEditText);
 
-        orderTitle.setText(Integer.toString(R.string.order_title)+" "+offer.order.getTitle());
+        orderTitle.setText(offer.order.getTitle());
 
 
         Button buttonLoadImage = (Button) findViewById(R.id.uploadPictureButton);

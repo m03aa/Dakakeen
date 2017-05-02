@@ -92,4 +92,6 @@
     <string name="card_number_invalid">Invalid card number</string>
     <string name="payment_success">Your transaction has been made successfully</string>
     <string name="offer_state">Offer state</string>
+    <string name="average_rating">Average Rating</string>
+    <string name="out_of">Out of 5</string>
 </resources>

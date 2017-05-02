@@ -120,6 +120,7 @@ public class CreateOrder extends AppCompatActivity implements ResponseHandler {
                 try {
                     params.put("image", image);
                 } catch (FileNotFoundException e) {
+                    Log.d("Send an image", e.getMessage());
                     e.printStackTrace();
                 }
             }

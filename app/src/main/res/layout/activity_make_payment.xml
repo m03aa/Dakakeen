@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/creamy"
-    tools:context="dakakeen.dakakeen.MakePayment">
+    tools:context="dakakeen.dakakeen.CustomerFunctions.MakePayment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,9 +113,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="2017"
+            android:hint="yy"
             android:inputType="number"
-            android:maxLength="4"
+            android:maxLength="2"
             android:textColor="@color/gray"
             android:textColorHint="@color/purple" />
 
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="03"
+            android:hint="mm"
             android:inputType="number"
             android:maxLength="2"
             android:textColor="@color/gray"

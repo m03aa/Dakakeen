@@ -86,6 +86,8 @@
     <string name="card_number_invalid">رقم البطاقة غير صحيح</string>
     <string name="payment_success">تم عملية الدفع بنجاح</string>
     <string name="offer_state">حالة العرض</string>
+    <string name="average_rating">متوسط التقاييم</string>
+    <string name="out_of">من 5</string>
 
 
 </resources>

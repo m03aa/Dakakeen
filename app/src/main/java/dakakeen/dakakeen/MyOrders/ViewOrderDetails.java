@@ -5,14 +5,23 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.FileAsyncHttpResponseHandler;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
+import cz.msebera.android.httpclient.Header;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
@@ -64,13 +73,41 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                 finish();
             }
             else{
-            JSONObject jsonObject = new JSONObject(new String(responseBody));
-            order.setDescription(jsonObject.getString("description"));
-            order.setCategory(jsonObject.getInt("Category"));
-            orderTitle.setText(order.getTitle());
-            orderDescription.setText(order.getDescription());
+            final JSONObject jsonObject = new JSONObject(new String(responseBody));
+                order.setDescription(jsonObject.getString("description"));
+                order.setCategory(jsonObject.getInt("Category"));
+                orderTitle.setText(order.getTitle());
+                orderDescription.setText(order.getDescription());
+
+                //to download the image from the server and set it in the image view
+                if (jsonObject.getString("picture") != null){
+                    AsyncHttpClient client = new AsyncHttpClient();
+
+                    client.get(jsonObject.getString("picture"), new FileAsyncHttpResponseHandler(getApplicationContext()) {
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, File file) {
+                            Log.d("image", Integer.toString(statusCode));
+
+                            try {
+                                Picasso.with(getApplicationContext())
+                                        .load(jsonObject.getString("picture"))
+                                        .fit()
+                                        .into(orderImage);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+
             }
         } catch (JSONException e) {
+            Log.d("catch", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -85,6 +122,7 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
     public void directToEditOrder(View view){
         Intent intent = new Intent(getApplicationContext(),EditOrder.class);
         intent.putExtra("order",order);
+
         startActivity(intent);
         finish();
     }
@@ -92,15 +130,15 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
 
 
     public void deleteOrder(View view){
-        new AlertDialog.Builder(getApplicationContext())
+        /*new AlertDialog.Builder(getApplicationContext())
                 .setMessage(R.string.delete_order)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i) {*/
                         isDelete =true;
                         communication.delete(communication.getUrl()+"/myorders/"+order.getId(),ViewOrderDetails.this);
                         finish();
-                    }
+                    /*}
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
@@ -108,13 +146,13 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
                         //Nothing will happen :)
                     }
                 })
-                .show();
+                .show();*/
     }
 
 
     public void getOffers(View view){
         Intent intent = new Intent(getApplicationContext(), ViewOffersForOrder.class);
-        intent.putExtra("orderId",order.getId());
+        intent.putExtra("order",order);
         startActivity(intent);
     }
 }

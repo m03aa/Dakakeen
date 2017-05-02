@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,7 +34,7 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
     private static int RESULT_LOAD_IMAGE = 1;
     private EditText orderTitle, orderDescription;
     private Spinner orderCategory;
-    private ImageView orderImage;
+    private LinearLayout imageLayout;
     private Order order;
     private Communication communication;
 
@@ -48,6 +50,8 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
         orderTitle= (EditText)findViewById(R.id.orderTitleEditText);
         orderDescription = (EditText)findViewById(R.id.orderDescriptionEditText);
         orderCategory = (Spinner)findViewById(R.id.categorySpinner);
+        imageLayout = (LinearLayout) findViewById(R.id.linearLayout2);
+        imageLayout.setVisibility(View.INVISIBLE);
 
         order = (Order)getIntent().getSerializableExtra("order");
 
@@ -69,29 +73,6 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            orderImage = (ImageView) findViewById(R.id.orderImageView);
-            orderImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
-        }
     }
 
     //Edit the current Order

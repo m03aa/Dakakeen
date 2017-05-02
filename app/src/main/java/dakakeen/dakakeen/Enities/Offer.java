@@ -84,4 +84,9 @@ public class Offer implements Serializable {
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
+
+    @Override
+    public String toString(){
+        return order.getTitle();
+    }
 }

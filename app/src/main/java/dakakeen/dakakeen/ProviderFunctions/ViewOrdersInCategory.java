@@ -51,6 +51,7 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
                 Intent intent = new Intent(getApplicationContext(),CustomerOrderDetails.class);
                 intent.putExtra("order",orders.get(position));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -65,17 +66,23 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
 
     @Override
     public void onSuccess(byte[] responseBody){
+
         try {
             JSONArray jsonArray = new JSONArray(new String(responseBody));
+
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Order order = new Order();
-                order.setId(jsonObject.getString("_id"));
-                order.setTitle(jsonObject.getString("title"));
-                order.setState(jsonObject.getInt("state"));
-                orders.add(order);
+
+                if (jsonObject.getInt("state") == 0) {
+                    Order order = new Order();
+                    order.setId(jsonObject.getString("_id"));
+                    order.setTitle(jsonObject.getString("title"));
+                    order.setState(jsonObject.getInt("state"));
+                    orders.add(order);
+                }
                 adapter.notifyDataSetChanged();
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

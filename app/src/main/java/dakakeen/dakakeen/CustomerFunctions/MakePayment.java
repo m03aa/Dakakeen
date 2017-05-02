@@ -1,7 +1,8 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.CustomerFunctions;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,13 +10,19 @@ import android.widget.Toast;
 
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Offer;
+import dakakeen.dakakeen.R;
 
 public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
-    private Offer offer;
+    private Offer offer = new Offer();
 
     private TextView price;
     private EditText holderName, cardNumber, cvcNumber, emonth, eyear;
@@ -29,10 +36,11 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
         communication = new Communication(getApplicationContext());
 
-        offer = (Offer) getIntent().getSerializableExtra("offer");
+        offer.setId(getIntent().getStringExtra("offerId"));
+        offer.setPrice(getIntent().getDoubleExtra("price",0));
 
         price = (TextView) findViewById(R.id.price);
-        price.setText(Double.toString(offer.getPrice())+" "+Integer.toString(R.string.saudi_riyal));
+        price.setText(Double.toString(offer.getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));
 
         holderName = (EditText) findViewById(R.id.holderName);
         cardNumber = (EditText) findViewById(R.id.cardNumber);
@@ -49,13 +57,19 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
         if (checkPaymentInfo()){
             RequestParams params = new RequestParams();
             params.put("offerId", offer.getId());
-            params.put("emonth", offer.payment.getEmonth());
-            params.put("eyear", offer.payment.getEyear());
-            params.put("cvc", offer.payment.getCvc());
-            params.put("number", offer.payment.getNumber());
 
-            if (offer.payment.getHolderName() != null)
-                params.put("name", offer.payment.getHolderName());
+            HashMap<String,String> payment = new HashMap<>();
+
+                payment.put("emonth", offer.payment.getEmonth());
+                payment.put("eyear", offer.payment.getEyear());
+                payment.put("cvc", offer.payment.getCvc());
+                payment.put("number", offer.payment.getNumber());
+
+                if (offer.payment.getHolderName() != null)
+                    payment.put("name", offer.payment.getHolderName());
+
+
+            params.put("payment",payment);
 
             try {
                 communication.post(communication.getUrl()+"/offers/accept", params, this);
@@ -68,8 +82,7 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
     public boolean checkPaymentInfo(){
 
-        if(!cardNumber.getText().toString().isEmpty() && !cvcNumber.getText().toString().isEmpty()
-                && !eyear.getText().toString().isEmpty() && !emonth.getText().toString().isEmpty()){
+        if(!cvcNumber.getText().toString().isEmpty() && !eyear.getText().toString().isEmpty() && !emonth.getText().toString().isEmpty()){
 
             offer.payment.setNumber(cardNumber.getText().toString());
             offer.payment.setCvc(cvcNumber.getText().toString());
@@ -96,7 +109,7 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
     @Override
     public void onFailure(byte[] responseBody){
-
+        Log.d("OnFailure", new String(responseBody));
         Toast.makeText(getApplicationContext(), communication.handelError(responseBody) ,Toast.LENGTH_SHORT).show();
     }
 

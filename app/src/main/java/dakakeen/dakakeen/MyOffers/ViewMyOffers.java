@@ -165,6 +165,7 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
 
     @Override
     public void onSuccess(byte[] responseBody){
+        Log.d("onSuccess", new String(responseBody));
 
         try {
             JSONArray jsonArray = new JSONArray(new String(responseBody));
@@ -176,8 +177,10 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
                 offer.setId(jsonObject.getString("_id"));
                 offer.getProvider().setName("providerUsername");
                 offer.setPrice(jsonObject.getDouble("price"));
+                offer.setRating(jsonObject.getInt("state"));
 
-                //omaaaar please add the state
+                offer.order.setTitle(jsonObject.getJSONArray("orderId").getJSONObject(0).getString("title"));
+
                 int state = jsonObject.getInt("state");
                 switch (state){
                     case 0:
@@ -206,6 +209,7 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
 
     @Override
     public void onFailure(byte[] responseBody){
-        Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
+        Log.d("onFailure!!", new String(responseBody));
+        //Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_SHORT).show();
     }
 }
