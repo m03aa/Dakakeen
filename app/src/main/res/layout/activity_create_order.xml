@@ -66,6 +66,7 @@
         android:ems="10"
         android:gravity="top"
         android:inputType="text|textMultiLine"
+        android:maxEms="140"
         android:paddingTop="3dp"
         android:textColor="@color/gray"
         app:layout_constraintHorizontal_bias="0.0"

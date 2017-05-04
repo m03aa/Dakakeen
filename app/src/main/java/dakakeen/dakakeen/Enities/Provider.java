@@ -1,10 +1,12 @@
 package dakakeen.dakakeen.Enities;
 
+import java.io.Serializable;
+
 /**
  * Created by Moath on 21/04/17.
  */
 
-public class Provider {
+public class Provider implements Serializable {
 
     private String username;
     private double averageRating;

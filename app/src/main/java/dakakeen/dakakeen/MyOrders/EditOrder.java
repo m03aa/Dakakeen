@@ -31,7 +31,6 @@ import dakakeen.dakakeen.Communication.ResponseHandler;
 public class EditOrder extends AppCompatActivity implements ResponseHandler {
 
 
-    private static int RESULT_LOAD_IMAGE = 1;
     private EditText orderTitle, orderDescription;
     private Spinner orderCategory;
     private LinearLayout imageLayout;
@@ -58,21 +57,6 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
         orderTitle.setText(order.getTitle());
         orderDescription.setText(order.getDescription());
         orderCategory.setSelection(order.getCategory()+1);
-
-
-        Button buttonLoadImage = (Button) findViewById(R.id.uploadImageButton);
-        buttonLoadImage.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
-            }
-        });
     }
 
     //Edit the current Order
@@ -118,7 +102,7 @@ public class EditOrder extends AppCompatActivity implements ResponseHandler {
 
     @Override
     public void onSuccess(byte[] responseBody){
-        Toast.makeText(getApplicationContext(),R.string.order_success,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),R.string.order_updated,Toast.LENGTH_SHORT).show();
         finish();
     }
 

@@ -130,23 +130,8 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
 
 
     public void deleteOrder(View view){
-        /*new AlertDialog.Builder(getApplicationContext())
-                .setMessage(R.string.delete_order)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {*/
-                        isDelete =true;
-                        communication.delete(communication.getUrl()+"/myorders/"+order.getId(),ViewOrderDetails.this);
-                        finish();
-                    /*}
-                })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Nothing will happen :)
-                    }
-                })
-                .show();*/
+        isDelete =true;
+        communication.delete(communication.getUrl()+"/myorders/"+order.getId(),ViewOrderDetails.this);
     }
 
 

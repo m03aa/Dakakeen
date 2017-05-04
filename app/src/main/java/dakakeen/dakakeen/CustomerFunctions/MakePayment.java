@@ -22,7 +22,7 @@ import dakakeen.dakakeen.R;
 
 public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
-    private Offer offer = new Offer();
+    private Offer offer;
 
     private TextView price;
     private EditText holderName, cardNumber, cvcNumber, emonth, eyear;
@@ -36,8 +36,7 @@ public class MakePayment extends AppCompatActivity implements ResponseHandler {
 
         communication = new Communication(getApplicationContext());
 
-        offer.setId(getIntent().getStringExtra("offerId"));
-        offer.setPrice(getIntent().getDoubleExtra("price",0));
+        offer = (Offer) getIntent().getSerializableExtra("offer");
 
         price = (TextView) findViewById(R.id.price);
         price.setText(Double.toString(offer.getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));

@@ -1,5 +1,6 @@
 package dakakeen.dakakeen.MyOffers;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,11 +70,33 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view_my_offers, container, false);
 
+
         myOffersList = (ListView)view.findViewById(R.id.MyoffersList);
         myOffersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent intent = new Intent(getContext(), ViewMyOfferDetails.class);
+                intent.putExtra("state",stateSpinner.getSelectedItemPosition());
+
+                switch (stateSpinner.getSelectedItemPosition()){
+                    case 0:
+                        intent.putExtra("offer", activeOffers.get(position));
+                        break;
+                    case 1:
+                        intent.putExtra("offer", closedOffers.get(position));
+                        break;
+                    case 2:
+                        intent.putExtra("offer", acceptedOffers.get(position));
+                        break;
+                    case 3:
+                        intent.putExtra("offer", deliveredOffers.get(position));
+                        break;
+                    case 4:
+                        intent.putExtra("offer", onrouteOffers.get(position));
+                        break;
+                }
+                startActivity(intent);
             }
         });
 

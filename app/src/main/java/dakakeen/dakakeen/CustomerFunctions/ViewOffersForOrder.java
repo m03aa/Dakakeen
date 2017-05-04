@@ -53,7 +53,7 @@ public class ViewOffersForOrder extends AppCompatActivity implements ResponseHan
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(),ViewOfferDetails.class);
-                intent.putExtra("offerId",offers.get(position).getId());
+                intent.putExtra("offer",offers.get(position));
                 startActivity(intent);
                 finish();
             }

@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:id="@+id/acceptOfferButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -24,6 +25,47 @@
         android:onClick="directToPayment"
         android:text="@string/accept_offer"
         android:textColor="@color/creamy" />
+
+    <Button
+        android:id="@+id/submitForDeliveryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/purple"
+        android:onClick="submitDelivery"
+        android:text="@string/submit_delivery"
+        android:textColor="@color/creamy"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/ActiveOfferLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:onClick="directToEditOffer"
+            android:text="@string/edit"
+            android:textColor="@color/creamy" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/purple"
+            android:onClick="deleteOffer"
+            android:text="@string/delete"
+            android:textColor="@color/creamy" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,21 +95,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/description"
-            android:textColor="@color/purple"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textColor="@color/gray"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/price"
             android:textColor="@color/purple"
             android:textSize="18sp" />
@@ -78,6 +105,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.72"
             android:text="Price"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:textColor="@color/purple"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
             android:textColor="@color/gray"
             android:textSize="18sp" />
 

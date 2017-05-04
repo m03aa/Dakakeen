@@ -94,4 +94,9 @@
     <string name="offer_state">Offer state</string>
     <string name="average_rating">Average Rating</string>
     <string name="out_of">Out of 5</string>
+    <string name="order_updated">Your order has been updated successfully</string>
+    <string name="offer_updated">Your offer has been updated successfully</string>
+    <string name="offer_deleted">Your offer has been deleted successfully</string>
+    <string name="submit_delivery">Submit Offer for delivery</string>
+    <string name="offer_submitted_delivery">Your offer has been submitted for delivery</string>
 </resources>

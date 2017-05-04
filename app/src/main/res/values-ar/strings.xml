@@ -88,6 +88,11 @@
     <string name="offer_state">حالة العرض</string>
     <string name="average_rating">متوسط التقاييم</string>
     <string name="out_of">من 5</string>
+    <string name="order_updated">تم تحديث طلبك بنجاح</string>
+    <string name="offer_updated">تم تحديث عرضك بنجاح</string>
+    <string name="offer_deleted">تم حذف عرضك بنجاح</string>
+    <string name="submit_delivery">تسجيل العرض للشحن</string>
+    <string name="offer_submitted_delivery">تم تسجيل عرضك للشحن</string>
 
 
 </resources>

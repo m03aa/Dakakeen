@@ -1,10 +1,12 @@
 package dakakeen.dakakeen.Enities;
 
+import java.io.Serializable;
+
 /**
  * Created by moath on 4/27/2017.
  */
 
-public class Payment {
+public class Payment implements Serializable {
 
     private String emonth, eyear, cvc, number, holderName;
 
