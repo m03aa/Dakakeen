@@ -55,14 +55,14 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
         offer = (Offer) getIntent().getSerializableExtra("offer");
         state = getIntent().getIntExtra("state",0);
 
+
+        acceptOfferButton.setVisibility(View.INVISIBLE);
         switch (state){
             case 0:
                 activeOfferLayout.setVisibility(View.VISIBLE);
-                acceptOfferButton.setVisibility(View.INVISIBLE);
                 break;
             case 2:
                 submitDelivaryButton.setVisibility(View.VISIBLE);
-                acceptOfferButton.setVisibility(View.INVISIBLE);
                 break;
         }
 

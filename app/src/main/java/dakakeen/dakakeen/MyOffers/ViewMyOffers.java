@@ -72,6 +72,8 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
 
 
         myOffersList = (ListView)view.findViewById(R.id.MyoffersList);
+        stateSpinner = (Spinner)view.findViewById(R.id.offerStateSٍpinner);
+
         myOffersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -97,45 +99,6 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
                         break;
                 }
                 startActivity(intent);
-            }
-        });
-
-        stateSpinner = (Spinner)view.findViewById(R.id.offerStateSٍpinner);
-        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                                android.R.id.text1,activeOffers);
-                        myOffersList.setAdapter(adapter);
-                        break;
-                    case 1:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                                android.R.id.text1,closedOffers);
-                        myOffersList.setAdapter(adapter);
-                        break;
-                    case 2:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                                android.R.id.text1,acceptedOffers);
-                        myOffersList.setAdapter(adapter);
-                        break;
-                    case 3:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                                android.R.id.text1,deliveredOffers);
-                        myOffersList.setAdapter(adapter);
-                        break;
-                    case 4:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                                android.R.id.text1,onrouteOffers);
-                        myOffersList.setAdapter(adapter);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // really!! then nothing will happen
             }
         });
 
@@ -174,9 +137,48 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
 
     public void updateOffersList(){
         activeOffers.clear();
-        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
-                android.R.id.text1,activeOffers);
-        myOffersList.setAdapter(adapter);
+        closedOffers.clear();
+        acceptedOffers.clear();
+        onrouteOffers.clear();
+        deliveredOffers.clear();
+
+        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                                android.R.id.text1,activeOffers);
+                        myOffersList.setAdapter(adapter);
+                        break;
+                    case 1:
+                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                                android.R.id.text1,closedOffers);
+                        myOffersList.setAdapter(adapter);
+                        break;
+                    case 2:
+                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                                android.R.id.text1,acceptedOffers);
+                        myOffersList.setAdapter(adapter);
+                        break;
+                    case 3:
+                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                                android.R.id.text1,deliveredOffers);
+                        myOffersList.setAdapter(adapter);
+                        break;
+                    case 4:
+                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                                android.R.id.text1,onrouteOffers);
+                        myOffersList.setAdapter(adapter);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // really!! then nothing will happen
+            }
+        });
 
         try {
             communication.get(communication.getUrl()+"/myoffers",this);

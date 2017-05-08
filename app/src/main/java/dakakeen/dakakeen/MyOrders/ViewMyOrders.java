@@ -89,39 +89,21 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
         });
 
         ordersList = (ListView) v.findViewById(R.id.ordersList);
+        orderState = (Spinner) v.findViewById(R.id.orderStateSpinner);
+
         //to pass an order from ordersList to viewOrderDetails
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
                 Intent intent = new Intent(getContext(),ViewOrderDetails.class);
-                intent.putExtra("order",orders.get(position));
+                if (orderState.getSelectedItemPosition() == 0){
+                    intent.putExtra("order",orders.get(position));
+                } else
+                    intent.putExtra("order",closedOrders.get(position));
                 startActivity(intent);
             }
         });
 
-
-        orderState = (Spinner) v.findViewById(R.id.orderStateSpinner);
-        //to change the list view content based on the order state
-        orderState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position == 0){
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
-                            android.R.id.text1, orders);
-                    ordersList.setAdapter(adapter);
-                }
-                else {
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
-                            android.R.id.text1, closedOrders);
-                    ordersList.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //then nothing happen
-            }
-        });
 
         return  v ;
 
@@ -160,9 +142,29 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
     //request the orders list from the server
     public void updateOrdersList(){
         orders.clear();
-        adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
-                android.R.id.text1, orders);
-        ordersList.setAdapter(adapter);
+        closedOrders.clear();
+        orderState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position == 0){
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, orders);
+                    adapter.notifyDataSetChanged();
+                    ordersList.setAdapter(adapter);
+                }
+                else {
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, closedOrders);
+                    ordersList.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //then nothing happen
+            }
+        });
 
         try {
             communication.get(communication.getUrl() + "/myorders/", this);
