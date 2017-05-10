@@ -23,10 +23,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import dakakeen.dakakeen.Communication.Communication;
+import dakakeen.dakakeen.Enities.Offer;
 import dakakeen.dakakeen.Enities.Order;
 import dakakeen.dakakeen.R;
 import dakakeen.dakakeen.Communication.ResponseHandler;
-
 
 
 public class ViewMyOrders extends Fragment implements ResponseHandler {
@@ -39,7 +39,10 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
     private Spinner orderState;
 
     public static ArrayList<Order> orders = new ArrayList<>();
-    public static ArrayList<Order> closedOrders = new ArrayList<>();
+    public static ArrayList<Order> acceptedOrders =  new ArrayList<>();
+    public static ArrayList<Order> deliveredOrders =  new ArrayList<>();
+    public static ArrayList<Order> onRouteOrders = new ArrayList<>();
+
     public static ArrayAdapter<Order> adapter;
     private String username;
 
@@ -95,11 +98,21 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
-                Intent intent = new Intent(getContext(),ViewOrderDetails.class);
-                if (orderState.getSelectedItemPosition() == 0){
-                    intent.putExtra("order",orders.get(position));
-                } else
-                    intent.putExtra("order",closedOrders.get(position));
+                Intent intent;
+                if (orderState.getSelectedItemPosition() == 0) {
+                    intent = new Intent(getContext(), ViewOrderDetails.class);
+                    intent.putExtra("order", orders.get(position));
+
+                } else{
+                    intent = new Intent(getContext(),ViewClosedOrderDetails.class);
+                    if (orderState.getSelectedItemPosition() == 1)
+                        intent.putExtra("order",acceptedOrders.get(position));
+                    else if (orderState.getSelectedItemPosition() == 2)
+                        intent.putExtra("order",deliveredOrders.get(position));
+                    else if (orderState.getSelectedItemPosition() == 3)
+                        intent.putExtra("order",onRouteOrders.get(position));
+                }
+
                 startActivity(intent);
             }
         });
@@ -142,22 +155,32 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
     //request the orders list from the server
     public void updateOrdersList(){
         orders.clear();
-        closedOrders.clear();
+        acceptedOrders.clear();
+        deliveredOrders.clear();
+        onRouteOrders.clear();
+
         orderState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if (position == 0){
                     adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
                             android.R.id.text1, orders);
-                    adapter.notifyDataSetChanged();
-                    ordersList.setAdapter(adapter);
                 }
-                else {
+                else if (position == 1){
                     adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
-                            android.R.id.text1, closedOrders);
-                    ordersList.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                            android.R.id.text1, acceptedOrders);
                 }
+                else if(position == 2){
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, deliveredOrders);
+                }
+                else if (position == 3){
+                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                            android.R.id.text1, onRouteOrders);
+                }
+
+                ordersList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -190,15 +213,31 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
 
                 if (jsonObject.getInt("state") == 0)
                     orders.add(order);
-                else
-                    closedOrders.add(order);
+                else{
+                    JSONObject offerObject = jsonObject.getJSONObject("offer");
+                    Offer offer = new Offer();
 
+                    offer.setId(offerObject.getString("_id"));
+                    offer.setState(offerObject.getInt("state"));
+                    order.setOffer(offer);
 
+                    if (offer.getState() == 2){
+                        acceptedOrders.add(order);
+                    }
+                    else if (offer.getState() == 3){
+                        deliveredOrders.add(order);
+                    }
+                    else if (offer.getState() == 4){
+                        onRouteOrders.add(order);
+                    }
+
+                }
                 adapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

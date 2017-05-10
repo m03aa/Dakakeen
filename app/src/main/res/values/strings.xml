@@ -50,7 +50,9 @@
 
     <string-array name="orderState">
         <item>Active</item>
-        <item>Closed</item>
+        <item>Accepted</item>
+        <item>Delivered</item>
+        <item>On route</item>
     </string-array>
 
     <string-array name="offerState">
@@ -99,4 +101,14 @@
     <string name="offer_deleted">Your offer has been deleted successfully</string>
     <string name="submit_delivery">Submit Offer for delivery</string>
     <string name="offer_submitted_delivery">Your offer has been submitted for delivery</string>
+    <string name="offer">Offer</string>
+    <string name="report_defect">Report Defect</string>
+    <string name="request_refund">Request Refund</string>
+    <string name="delivered">Delivered</string>
+    <string name="onRoute">On route</string>
+    <string name="accepted">Accepted</string>
+    <string name="reason">Reason</string>
+    <string name="submission_success">Your submission has been made successfully</string>
+    <string name="already_rate">You have already rate this offer</string>
+    <string name="review">Review</string>
 </resources>

@@ -10,6 +10,7 @@ public class Order implements Serializable {
     private int category, state;
     private String id, title, description, username, image;
     private Account customer;
+    private Offer offer;
 
     public Order(){
         customer = new Account();
@@ -77,6 +78,14 @@ public class Order implements Serializable {
 
     public void setCustomer(Account customer) {
         this.customer = customer;
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
 
     @Override

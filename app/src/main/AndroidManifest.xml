@@ -38,6 +38,9 @@
         <activity android:name=".CustomerFunctions.MakePayment" />
         <activity android:name=".MyOffers.ViewMyOfferDetails" />
         <activity android:name=".MyOffers.EditOffer" />
+        <activity android:name=".MyOrders.ViewClosedOrderDetails" />
+        <activity android:name=".CustomerFunctions.RequestRefundAndReportDefect" />
+        <activity android:name=".CustomerFunctions.RateOffer"></activity>
     </application>
 
 </manifest>

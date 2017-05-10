@@ -43,7 +43,9 @@
 
     <string-array name="orderState">
         <item>نشط</item>
-        <item>مغلق</item>
+        <item>مقبول</item>
+        <item>تم التوصيل</item>
+        <item>فالطريق</item>
     </string-array>
 
     <string-array name="offerState">
@@ -93,6 +95,16 @@
     <string name="offer_deleted">تم حذف عرضك بنجاح</string>
     <string name="submit_delivery">تسجيل العرض للشحن</string>
     <string name="offer_submitted_delivery">تم تسجيل عرضك للشحن</string>
+    <string name="offer">العرض</string>
+    <string name="report_defect">التبليغ عن مشكلة</string>
+    <string name="request_refund">طلب إعادة النقود</string>
+    <string name="delivered">تم توصيله</string>
+    <string name="onRoute">في الطريق</string>
+    <string name="accepted">موافق عليه</string>
+    <string name="reason">السبب</string>
+    <string name="submission_success">تم الإرسال بنجاح</string>
+    <string name="already_rate">لقد قمت بتقييم هذا العرض من قبل</string>
+    <string name="review">التعليق</string>
 
 
 </resources>

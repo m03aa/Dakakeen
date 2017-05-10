@@ -201,7 +201,7 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
                 offer.setId(jsonObject.getString("_id"));
                 offer.getProvider().setName("providerUsername");
                 offer.setPrice(jsonObject.getDouble("price"));
-                offer.setRating(jsonObject.getInt("state"));
+                offer.setState(jsonObject.getInt("state"));
 
                 offer.order.setTitle(jsonObject.getJSONArray("orderId").getJSONObject(0).getString("title"));
 

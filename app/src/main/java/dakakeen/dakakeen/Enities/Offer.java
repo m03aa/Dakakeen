@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 public class Offer implements Serializable {
 
-    private String id,description, review;
-    private double price,rating;
+    private String id,description, review, rating;
+    private double price;
     private int state;
     public Order order;
     public Provider provider;
@@ -45,11 +45,11 @@ public class Offer implements Serializable {
         this.price = price;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
