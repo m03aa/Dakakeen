@@ -141,13 +141,8 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
                         orders.setArguments(bundle);
                         return orders;
                     case 1:
-                        ViewOffersFragment offers = new ViewOffersFragment();
-                        bundle.putString("username",account.getUsername());
-                        offers.setArguments(bundle);
-                        return offers;
-                    case 2:
                         return new ViewTopProvidersFragment();
-                    case 3:
+                    case 2:
                         SettingsFragment settings = new SettingsFragment();
                         bundle.putString("username",account.getUsername());
                         settings.setArguments(bundle);
@@ -173,9 +168,6 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
 
         @Override
         public int getCount() {
-            if(account.getRole() == 1)
-                return 4;
-            else
                 return 3;
         }
 
@@ -186,10 +178,8 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
                     case 0:
                         return getString(R.string.orders);
                     case 1:
-                        return getString(R.string.offers);
-                    case 2:
                         return getString(R.string.top_providers);
-                    case 3:
+                    case 2:
                         return getString(R.string.settings);
                 }
             }
