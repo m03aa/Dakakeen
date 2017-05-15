@@ -80,7 +80,7 @@ public class SettingsFragment extends Fragment implements ResponseHandler {
 
 
             account=(Account) getArguments().getSerializable("account");
-            Log.d("username",account.getName());
+            Log.d("username",account.getUsername());
             communication=new Communication(getActivity().getApplicationContext());
 
         }
@@ -120,7 +120,7 @@ public class SettingsFragment extends Fragment implements ResponseHandler {
                     case 1:
                         i = new Intent(getContext(),ChangePassword.class);
 
-                        i.putExtra("username",account.getName());
+                        i.putExtra("username",account.getUsername());
                         i.putExtra("password",account.getPassword());
                         startActivity(i);
                         break;

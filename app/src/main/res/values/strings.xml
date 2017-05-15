@@ -115,4 +115,10 @@
     <string name="logout">Logout</string>
     <string name="logout_message">are you sure ?</string>
     <string name="logout_successful">Logout successful</string>
+    <string name="new_password">New password</string>
+    <string name="verify_password">Verify password</string>
+    <string name="change_password">Change password</string>
+    <string name="old_password_not_correct">Old password is not correct</string>
+    <string name="new_and_verified_password_not_match">New and verified password does not match</string>
+    <string name="password_changed_successfully">Password has been changed successfully</string>
 </resources>

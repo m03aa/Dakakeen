@@ -109,6 +109,11 @@
     <string name="logout">تسجيل الخروج</string>
     <string name="logout_message">" هل أنت متأكد ؟"</string>
     <string name="logout_successful">تم تسجيل الخروج بنجاح</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="verify_password">تأكيد كلمة المرور</string>
+    <string name="old_password_not_correct">كلمة المرور القديمة غير صحيحة</string>
+    <string name="new_and_verified_password_not_match">كلمتي المرور غير متطابقة</string>
+    <string name="password_changed_successfully">تم تغيير كلمة المرور بنجاح</string>
 
 
 </resources>
