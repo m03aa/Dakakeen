@@ -144,7 +144,7 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
                         return new ViewTopProvidersFragment();
                     case 2:
                         SettingsFragment settings = new SettingsFragment();
-                        bundle.putString("username",account.getUsername());
+                        bundle.putSerializable("account",account);
                         settings.setArguments(bundle);
                         return settings;
                     default:

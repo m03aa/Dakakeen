@@ -1,17 +1,25 @@
 package dakakeen.dakakeen;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import dakakeen.dakakeen.Communication.Communication;
+import dakakeen.dakakeen.Communication.ResponseHandler;
+import dakakeen.dakakeen.Enities.Account;
 import dakakeen.dakakeen.MyOrders.CreateOrder;
 
 
@@ -23,18 +31,20 @@ import dakakeen.dakakeen.MyOrders.CreateOrder;
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements ResponseHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Communication communication;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public ListView settingsListView;
-    private String username;
+    private Account account;
+
     //i will delete this later
     String [] set = {"Edit profile","Change password"};
 
@@ -67,7 +77,12 @@ public class SettingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            username = getArguments().getString("username");
+
+
+            account=(Account) getArguments().getSerializable("account");
+            Log.d("username",account.getName());
+            communication=new Communication(getActivity().getApplicationContext());
+
         }
     }
 
@@ -76,6 +91,7 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
         /*
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,android.R.id.text1,set);
         Log.d("d",set[0]);
@@ -89,20 +105,51 @@ public class SettingsFragment extends Fragment {
 
         settingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-          @Override
-          public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
-            Intent i ;
-              switch (position) {
-                  case 0:
-                      i = new Intent(getContext(),EditProfile.class);
-                      startActivity(i);
-                      break;
-                  case 1:
-                       i = new Intent(getContext(),ChangePassword.class);
-                      startActivity(i);
-                      break;
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
+                Intent i ;
 
-              }
+
+                switch (position) {
+
+                    case 0:
+                        i = new Intent(getContext(),EditProfile.class);
+                        i.putExtra("account",account);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        i = new Intent(getContext(),ChangePassword.class);
+
+                        i.putExtra("username",account.getName());
+                        i.putExtra("password",account.getPassword());
+                        startActivity(i);
+                        break;
+                    case 2:
+
+                        new AlertDialog.Builder(getContext())
+                                .setTitle(getString(R.string.logout))
+                                .setMessage(getString(R.string.logout_message))
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+
+
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        try {
+                                            communication.get(communication.getUrl()+"/auth/logout",SettingsFragment.this);
+                                            Log.d("communication","Succes");
+                                            getActivity().finish();
+
+                                            Toast.makeText(getContext(), getString(R.string.logout_successful), Toast.LENGTH_SHORT).show();
+                                        }catch (Exception e){
+                                            Log.e("error","faild to log out");
+
+                                        }
+                                    }})
+                                .setNegativeButton(android.R.string.no, null).show();
+
+
+                }
              /* if(position==0){
                   Log.d("editprofile","selected");
 
@@ -115,8 +162,8 @@ public class SettingsFragment extends Fragment {
               startActivity(i);
               */
 
-          }
-      });
+            }
+        });
 
 
         return view;
@@ -151,6 +198,26 @@ public class SettingsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onSuccess(byte[] responseBody) {
+        try {
+            Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_LONG).show();
+            JSONObject jsonObject = new JSONObject(new String(responseBody));
+
+
+        }catch (Exception e){
+
+
+        }
+
+    }
+
+    @Override
+    public void onFailure(byte[] responseBody) {
+        Toast.makeText(getContext(),communication.handelError(responseBody),Toast.LENGTH_LONG).show();
+
     }
 
     /**

@@ -46,6 +46,7 @@
     <string-array name="settings">
         <item>Edit profile</item>
         <item>Change password</item>
+        <item>Log out</item>
     </string-array>
 
     <string-array name="orderState">
@@ -111,4 +112,7 @@
     <string name="submission_success">Your submission has been made successfully</string>
     <string name="already_rate">You have already rate this offer</string>
     <string name="review">Review</string>
+    <string name="logout">Logout</string>
+    <string name="logout_message">are you sure ?</string>
+    <string name="logout_successful">Logout successful</string>
 </resources>
