@@ -139,5 +139,6 @@ public class ViewOrderDetails extends AppCompatActivity implements ResponseHandl
         Intent intent = new Intent(getApplicationContext(), ViewOffersForOrder.class);
         intent.putExtra("order",order);
         startActivity(intent);
+        finish();
     }
 }

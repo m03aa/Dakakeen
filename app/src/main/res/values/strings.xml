@@ -121,4 +121,6 @@
     <string name="old_password_not_correct">Old password is not correct</string>
     <string name="new_and_verified_password_not_match">New and verified password does not match</string>
     <string name="password_changed_successfully">Password has been changed successfully</string>
+    <string name="view_rating">View rating for this offer</string>
+    <string name="no_rating">This is offer is not rated</string>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.CustomerFunctions.MakePayment;
 import dakakeen.dakakeen.Enities.Offer;
 import dakakeen.dakakeen.R;
+import dakakeen.dakakeen.rating;
 
 public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHandler {
 
@@ -34,7 +36,7 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
     private boolean isDelete = false, isDelivery = false;
     private int state;
 
-    private TextView providerUsername, offerDescription, offerPrice;
+    private TextView providerUsername, offerDescription, offerPrice,ratingText;
     private ImageView offerImage;
     private Button acceptOfferButton, submitDelivaryButton;
     private LinearLayout activeOfferLayout;
@@ -51,6 +53,8 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
         acceptOfferButton = (Button) findViewById(R.id.acceptOfferButton);
         activeOfferLayout = (LinearLayout) findViewById(R.id.ActiveOfferLayout);
         submitDelivaryButton = (Button) findViewById(R.id.submitForDeliveryButton);
+        ratingText=(TextView) findViewById(R.id.ratingEditText);
+
 
         offer = (Offer) getIntent().getSerializableExtra("offer");
         state = getIntent().getIntExtra("state",0);
@@ -64,6 +68,10 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
             case 2:
                 submitDelivaryButton.setVisibility(View.VISIBLE);
                 break;
+            // casee 3 for rating
+            case 3:
+                ratingText.setVisibility(View.VISIBLE);
+                break;
         }
 
         communication = new Communication(getApplicationContext());
@@ -73,6 +81,18 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
         }catch (Exception e){
 
         }
+    }
+
+    public void viewRating(View view){
+        Intent i = new Intent(getApplicationContext(),rating.class);
+        // send information to this activity....
+        i.putExtra("offer",offer);
+        startActivity(i);
+
+
+
+
+
     }
 
     public void directToEditOffer(View view){
@@ -109,6 +129,11 @@ public class ViewMyOfferDetails extends AppCompatActivity implements ResponseHan
                 offer.setDescription(jsonObject.getString("description"));
                 offerDescription.setText(offer.getDescription());
                 offerPrice.setText(Double.toString(offer.getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));
+                if (jsonObject.getString("rating")!=null){
+                    offer.setRating(jsonObject.getString("rating"));
+                Log.d("Rating",offer.getRating());
+                offer.setReview(jsonObject.getString("review"));
+                }
 
                 //to download the image from the server and set it in the image view
                 if (jsonObject.getString("picture") != null){

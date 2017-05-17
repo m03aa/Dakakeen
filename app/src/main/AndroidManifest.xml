@@ -40,8 +40,9 @@
         <activity android:name=".MyOffers.EditOffer" />
         <activity android:name=".MyOrders.ViewClosedOrderDetails" />
         <activity android:name=".CustomerFunctions.RequestRefundAndReportDefect" />
-        <activity android:name=".ChangePassword"/>
-        <activity android:name=".CustomerFunctions.RateOffer"></activity>
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".CustomerFunctions.RateOffer" />
+        <activity android:name=".rating"></activity>
     </application>
 
 </manifest>
