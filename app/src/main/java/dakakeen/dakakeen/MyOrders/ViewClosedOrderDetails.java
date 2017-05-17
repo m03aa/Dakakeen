@@ -5,13 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.FileAsyncHttpResponseHandler;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
+import cz.msebera.android.httpclient.Header;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Order;
@@ -24,6 +32,7 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
     private Order order;
     private Communication communication;
     private boolean orderDetails = true;
+    private ImageView imageView;
 
     private TextView orderTitle, orderDescription, offerState, offerPrice, offerDescription;
     private LinearLayout deliveredOrderLayout;
@@ -42,6 +51,7 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
         offerPrice = (TextView) findViewById(R.id.offerPrice);
         offerDescription = (TextView) findViewById(R.id.offerDescription);
         deliveredOrderLayout = (LinearLayout) findViewById(R.id.deliveredOrderLayout);
+        imageView=(ImageView)findViewById(R.id.closedOrderDetails);
 
         if (order.getOffer().getState() != 3)
             deliveredOrderLayout.setVisibility(View.INVISIBLE);
@@ -57,12 +67,15 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
     @Override
     public void onSuccess(byte[] responseBody){
 
-        JSONObject jsonObject = null;
+         //JSONObject jsonObject = null;
         try {
+            // herrrrrrrrreeeeee i made changes
+            final JSONObject jsonObject = new JSONObject(new String(responseBody));
             if (orderDetails){
-                jsonObject = new JSONObject(new String(responseBody));
+                //jsonObject = new JSONObject(new String(responseBody));
                 order.setDescription(jsonObject.getString("description"));
                 order.setCategory(jsonObject.getInt("Category"));
+
                 orderTitle.setText(order.getTitle());
                 orderDescription.setText(order.getDescription());
 
@@ -71,13 +84,38 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
                 communication.get(communication.getUrl()+"/offer/"+order.getOffer().getId(),this);
             }
             else {
-                jsonObject = new JSONObject(new String(responseBody));
+                //jsonObject = new JSONObject(new String(responseBody));
                 order.getOffer().provider.setName(jsonObject.getString("providerUsername"));
                 order.getOffer().setDescription(jsonObject.getString("description"));
                 offerDescription.setText(order.getOffer().getDescription());
                 order.getOffer().setPrice(jsonObject.getInt("price"));
                 offerPrice.setText(Double.toString(order.getOffer().getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));
                 order.getOffer().setRating(jsonObject.getString("rating"));
+                // heeeeeeeeeeeeeeeerrrrrrrrrrrrrreeeeeeeeee i made changes
+                if (jsonObject.getString("picture") != null){
+                    AsyncHttpClient client = new AsyncHttpClient();
+
+                    client.get(jsonObject.getString("picture"), new FileAsyncHttpResponseHandler(getApplicationContext()) {
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, File file) {
+                            Log.d("image", Integer.toString(statusCode));
+
+                            try {
+                                Picasso.with(getApplicationContext())
+                                        .load(jsonObject.getString("picture"))
+                                        .fit()
+                                        .into(imageView);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
 
                 switch (order.getOffer().getState()){
                     case 2:

@@ -68,8 +68,8 @@ public class ChangePassword extends AppCompatActivity implements ResponseHandler
             Params.put("username",username);
             Log.d("username",username);
             Log.d("pass",oldPassWord);
-            Params.put("oldpassword",oldPassWord);
-            Params.put("password",newPassword);
+            Params.put("password",oldPassWord);
+            Params.put("newPassword",newPassword);
             communication.post(communication.getUrl()+"/auth/change",Params,this);
 
         }catch (Exception e){
@@ -90,7 +90,7 @@ public class ChangePassword extends AppCompatActivity implements ResponseHandler
             JSONObject jsonObject = new JSONObject(new String(responseBody));
             //username=jsonObject.getString("username");
             //password=jsonObject.getString("password");
-            Toast.makeText(getApplication(),R.string.password_changed_successfully,Toast.LENGTH_LONG);
+            Toast.makeText(getApplication(),R.string.password_changed_successfully,Toast.LENGTH_LONG).show();
             oldpass.setText("");
             newPasswordEditText.setText("");
             verifyPasswordEditText.setText("");
