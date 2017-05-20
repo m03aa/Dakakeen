@@ -81,7 +81,7 @@
     <string name="saudi_riyal">ر.س</string>
     <string name="accept_offer">قبول العرض</string>
     <string name="holder_name">إسم حامل البطاقة</string>
-    <string name="card_number">الرقم السري</string>
+    <string name="card_number">رقم البطاقة</string>
     <string name="expire_date">تاريخ الإنتهاء</string>
     <string name="cvc_number">الرقم السري</string>
     <string name="cvc_invalid">الرقم السري غير صحيح</string>
@@ -116,6 +116,12 @@
     <string name="password_changed_successfully">تم تغيير كلمة المرور بنجاح</string>
     <string name="view_rating">عرض التقييم لهذا العرض</string>
     <string name="no_rating">لم يتم تقييم هذا العرض</string>
+    <string name="delivery_id">رقم الشحن</string>
+    <string name="from_address">العنوان المرسل منه</string>
+    <string name="to_address">العنوان المرسل إليه</string>
+    <string name="expected_date">التاريخ المتوقع</string>
+    <string name="rate_offer">تقييم العرض</string>
+    <string name="check_connection">الرجاء التأكد من اتصالك بالانترنت</string>
 
 
 </resources>

@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -40,9 +42,11 @@
         <activity android:name=".MyOffers.EditOffer" />
         <activity android:name=".MyOrders.ViewClosedOrderDetails" />
         <activity android:name=".CustomerFunctions.RequestRefundAndReportDefect" />
-        <activity android:name=".ChangePassword" />
+        <activity android:name=".Authentication.ChangePassword" />
         <activity android:name=".CustomerFunctions.RateOffer" />
-        <activity android:name=".rating"></activity>
+        <activity android:name=".rating" />
+        <activity android:name=".Deliveries.ViewDeliveries" />
+        <activity android:name=".Deliveries.ViewDeliveryDetails"></activity>
     </application>
 
 </manifest>

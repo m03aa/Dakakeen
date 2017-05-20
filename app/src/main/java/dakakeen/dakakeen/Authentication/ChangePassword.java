@@ -1,4 +1,4 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Authentication;
 
 import android.app.DownloadManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Account;
+import dakakeen.dakakeen.R;
 
 public class ChangePassword extends AppCompatActivity implements ResponseHandler {
     private String username;

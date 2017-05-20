@@ -22,7 +22,7 @@ import dakakeen.dakakeen.MyOffers.ViewMyOffers;
 
 //i added the implements part
 public class TabsActivity extends AppCompatActivity implements android.app.ActionBar.TabListener,
-        ViewMyOrders.OnFragmentInteractionListener, ViewOffersFragment.OnFragmentInteractionListener,
+        ViewMyOrders.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;

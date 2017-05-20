@@ -17,10 +17,11 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import dakakeen.dakakeen.Authentication.ChangePassword;
+import dakakeen.dakakeen.Authentication.EditProfile;
 import dakakeen.dakakeen.Communication.Communication;
 import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Account;
-import dakakeen.dakakeen.MyOrders.CreateOrder;
 
 
 /**

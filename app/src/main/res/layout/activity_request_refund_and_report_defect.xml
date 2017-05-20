@@ -30,6 +30,7 @@
         android:layout_marginTop="20dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
+        android:gravity="top|start"
         android:inputType="textMultiLine"
         android:maxEms="140"
         android:textColor="@color/gray" />

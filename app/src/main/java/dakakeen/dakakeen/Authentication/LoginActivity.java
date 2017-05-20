@@ -18,6 +18,7 @@ import dakakeen.dakakeen.Communication.ResponseHandler;
 import dakakeen.dakakeen.Enities.Account;
 import dakakeen.dakakeen.R;
 import dakakeen.dakakeen.TabsActivity;
+import dakakeen.dakakeen.Deliveries.ViewDeliveries;
 
 public class LoginActivity extends AppCompatActivity implements ResponseHandler{
 
@@ -81,7 +82,11 @@ public class LoginActivity extends AppCompatActivity implements ResponseHandler{
         }
 
         Toast.makeText(getApplicationContext(),R.string.Login_successful,Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(),TabsActivity.class);
+        Intent intent;
+        if(account.getRole() == 3)
+            intent = new Intent(getApplicationContext(),ViewDeliveries.class);
+        else
+            intent = new Intent(getApplicationContext(),TabsActivity.class);
         intent.putExtra("account",account);
         startActivity(intent);
         finish();

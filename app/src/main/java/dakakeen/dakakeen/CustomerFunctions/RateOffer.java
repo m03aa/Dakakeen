@@ -49,7 +49,9 @@ public class RateOffer extends AppCompatActivity implements ResponseHandler {
         else {
             RequestParams params = new RequestParams();
             params.put("offerId",offerId);
+            Log.d("offerId",offerId);
             params.put("review",review);
+            Log.d("rating",Float.toString(ratingBar.getRating()));
             if (ratingBar.getRating() < 1)
                 params.put("rating",1);
             else

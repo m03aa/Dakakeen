@@ -163,19 +163,19 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if (position == 0){
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                    adapter = new ArrayAdapter<Order>(getContext(),R.layout.item,
                             android.R.id.text1, orders);
                 }
                 else if (position == 1){
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                    adapter = new ArrayAdapter<Order>(getContext(),R.layout.item,
                             android.R.id.text1, acceptedOrders);
                 }
                 else if(position == 2){
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                    adapter = new ArrayAdapter<Order>(getContext(),R.layout.item,
                             android.R.id.text1, deliveredOrders);
                 }
                 else if (position == 3){
-                    adapter = new ArrayAdapter<Order>(getContext(),android.R.layout.simple_list_item_1,
+                    adapter = new ArrayAdapter<Order>(getContext(),R.layout.item,
                             android.R.id.text1, onRouteOrders);
                 }
 

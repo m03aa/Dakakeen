@@ -1,7 +1,9 @@
-package dakakeen.dakakeen;
+package dakakeen.dakakeen.Authentication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import dakakeen.dakakeen.R;
 
 public class EditProfile extends AppCompatActivity {
 

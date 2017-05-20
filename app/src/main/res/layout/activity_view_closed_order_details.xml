@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:background="@color/purple"
             android:onClick="DirectToRateOffer"
-            android:text="@string/report_defect"
+            android:text="@string/rate_offer"
             android:textColor="@color/creamy" />
     </LinearLayout>
 

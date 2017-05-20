@@ -32,7 +32,6 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
     private Order order;
     private Communication communication;
     private boolean orderDetails = true;
-    private ImageView imageView;
 
     private TextView orderTitle, orderDescription, offerState, offerPrice, offerDescription;
     private LinearLayout deliveredOrderLayout;
@@ -51,7 +50,6 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
         offerPrice = (TextView) findViewById(R.id.offerPrice);
         offerDescription = (TextView) findViewById(R.id.offerDescription);
         deliveredOrderLayout = (LinearLayout) findViewById(R.id.deliveredOrderLayout);
-        imageView=(ImageView)findViewById(R.id.closedOrderDetails);
 
         if (order.getOffer().getState() != 3)
             deliveredOrderLayout.setVisibility(View.INVISIBLE);
@@ -69,7 +67,6 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
 
          //JSONObject jsonObject = null;
         try {
-            // herrrrrrrrreeeeee i made changes
             final JSONObject jsonObject = new JSONObject(new String(responseBody));
             if (orderDetails){
                 //jsonObject = new JSONObject(new String(responseBody));
@@ -91,31 +88,6 @@ public class ViewClosedOrderDetails extends AppCompatActivity implements Respons
                 order.getOffer().setPrice(jsonObject.getInt("price"));
                 offerPrice.setText(Double.toString(order.getOffer().getPrice())+" "+ getApplicationContext().getString(R.string.saudi_riyal));
                 order.getOffer().setRating(jsonObject.getString("rating"));
-                // heeeeeeeeeeeeeeeerrrrrrrrrrrrrreeeeeeeeee i made changes
-                if (jsonObject.getString("picture") != null){
-                    AsyncHttpClient client = new AsyncHttpClient();
-
-                    client.get(jsonObject.getString("picture"), new FileAsyncHttpResponseHandler(getApplicationContext()) {
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, File file) {
-                            Log.d("image", Integer.toString(statusCode));
-
-                            try {
-                                Picasso.with(getApplicationContext())
-                                        .load(jsonObject.getString("picture"))
-                                        .fit()
-                                        .into(imageView);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
 
                 switch (order.getOffer().getState()){
                     case 2:

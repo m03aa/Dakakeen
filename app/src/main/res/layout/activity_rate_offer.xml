@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/review"
         android:layout_below="@+id/review"
-        android:layout_marginTop="17dp" />
+        android:layout_marginTop="17dp"
+        android:stepSize="1" />
 
     <TextView
         android:id="@+id/reviewTextView"

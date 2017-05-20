@@ -40,7 +40,7 @@ public class ViewOrdersInCategory extends AppCompatActivity implements ResponseH
         //to fill the listView with orders from the selected category
         orders.clear();
         ordersList = (ListView) findViewById(R.id.ordersInCategoryList);
-        adapter = new ArrayAdapter<Order>(getApplicationContext(),android.R.layout.simple_list_item_1,
+        adapter = new ArrayAdapter<Order>(getApplicationContext(),R.layout.item,
                 android.R.id.text1, orders);
         ordersList.setAdapter(adapter);
 

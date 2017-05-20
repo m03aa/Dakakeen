@@ -133,7 +133,7 @@ public class CreateOffer extends AppCompatActivity implements ResponseHandler{
         offer.setDescription(offerDescription.getText().toString());
         offer.setPrice(Double.parseDouble(offerPrice.getText().toString()));
 
-        if (!offer.getDescription().isEmpty() && offer.getPrice() != 0){
+        if (!offer.getDescription().isEmpty() && offer.getPrice() != 0.0){
 
             if (!offer.getDescription().trim().matches(""))
                 return true;

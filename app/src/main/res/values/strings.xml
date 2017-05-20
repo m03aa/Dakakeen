@@ -123,4 +123,10 @@
     <string name="password_changed_successfully">Password has been changed successfully</string>
     <string name="view_rating">View rating for this offer</string>
     <string name="no_rating">This is offer is not rated</string>
+    <string name="delivery_id">Delivery ID</string>
+    <string name="from_address">Delivered from</string>
+    <string name="to_address">Delivered to</string>
+    <string name="expected_date">Expected date</string>
+    <string name="rate_offer">Rate Offer</string>
+    <string name="check_connection">Please check your internet connection</string>
 </resources>
