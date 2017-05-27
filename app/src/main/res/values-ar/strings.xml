@@ -122,6 +122,7 @@
     <string name="expected_date">التاريخ المتوقع</string>
     <string name="rate_offer">تقييم العرض</string>
     <string name="check_connection">الرجاء التأكد من اتصالك بالانترنت</string>
+    <string name="change_password">تغير كلمة السر</string>
 
 
 </resources>

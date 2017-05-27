@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,9 +35,9 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
     private OnFragmentInteractionListener mListener;
 
 
-    private FloatingActionButton FAB;
     private ListView ordersList;
     private Spinner orderState;
+    private Button createOrder;
 
     public static ArrayList<Order> orders = new ArrayList<>();
     public static ArrayList<Order> acceptedOrders =  new ArrayList<>();
@@ -81,8 +82,8 @@ public class ViewMyOrders extends Fragment implements ResponseHandler {
         View v = inflater.inflate(R.layout.fragment_view_my_orders, container, false);
 
         // عشان اروح للاكتفيتي من الفراقمنت
-        FAB = (FloatingActionButton)v.findViewById(R.id.createOrderFAB);
-        FAB.setOnClickListener(new View.OnClickListener() {
+        createOrder = (Button) v.findViewById(R.id.createOrderButton);
+        createOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),CreateOrder.class);

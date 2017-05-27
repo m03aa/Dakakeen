@@ -48,19 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout6" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/createOrderFAB"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/createOrderButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ordersList"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:drawable/ic_input_add"
-            android:clickable="true"
-            app:backgroundTint="@color/purple"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            android:background="@color/purple"
+            android:text="@string/create_order"
+            android:textColor="@color/creamy" />
 
     </RelativeLayout>
 </FrameLayout>

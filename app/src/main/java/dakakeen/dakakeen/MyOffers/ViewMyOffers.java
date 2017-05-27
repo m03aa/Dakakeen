@@ -147,27 +147,27 @@ public class ViewMyOffers extends Fragment implements ResponseHandler {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                        adapter= new ArrayAdapter<Offer>(getContext(),R.layout.item,
                                 android.R.id.text1,activeOffers);
                         myOffersList.setAdapter(adapter);
                         break;
                     case 1:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                        adapter= new ArrayAdapter<Offer>(getContext(),R.layout.item,
                                 android.R.id.text1,closedOffers);
                         myOffersList.setAdapter(adapter);
                         break;
                     case 2:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                        adapter= new ArrayAdapter<Offer>(getContext(),R.layout.item,
                                 android.R.id.text1,acceptedOffers);
                         myOffersList.setAdapter(adapter);
                         break;
                     case 3:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                        adapter= new ArrayAdapter<Offer>(getContext(),R.layout.item,
                                 android.R.id.text1,deliveredOffers);
                         myOffersList.setAdapter(adapter);
                         break;
                     case 4:
-                        adapter= new ArrayAdapter<Offer>(getContext(),android.R.layout.simple_expandable_list_item_1,
+                        adapter= new ArrayAdapter<Offer>(getContext(),R.layout.item,
                                 android.R.id.text1,onrouteOffers);
                         myOffersList.setAdapter(adapter);
                         break;

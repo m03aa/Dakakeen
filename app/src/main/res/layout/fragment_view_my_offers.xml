@@ -32,6 +32,7 @@
                 android:id="@+id/offerStateSٍpinner"
                 android:layout_width="205dp"
                 android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background"
                 android:entries="@array/offerState" />
 
         </LinearLayout>

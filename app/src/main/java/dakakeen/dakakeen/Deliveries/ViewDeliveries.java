@@ -38,7 +38,7 @@ public class ViewDeliveries extends AppCompatActivity implements ResponseHandler
         communication = new Communication(getApplicationContext());
 
         deliveriesList = (ListView) findViewById(R.id.deliveriesListView);
-        arrayAdapter = new ArrayAdapter<Delivery>(getApplicationContext(),android.R.layout.simple_list_item_1,
+        arrayAdapter = new ArrayAdapter<Delivery>(getApplicationContext(),R.layout.item,
                 android.R.id.text1,deliveries);
         deliveriesList.setAdapter(arrayAdapter);
 
