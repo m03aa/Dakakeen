@@ -37,7 +37,7 @@
     </string-array>
 
     <string-array name="settings">
-        <item>تعديل الملف الشخصي</item>
+        <!--<item>تعديل الملف الشخصي</item>-->
         <item>تغيير كلمة المرور</item>
         <item>تسجيل الخروج</item>
     </string-array>

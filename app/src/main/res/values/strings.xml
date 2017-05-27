@@ -44,7 +44,7 @@
 
 
     <string-array name="settings">
-        <item>Edit profile</item>
+        <!--<item>Edit profile</item>-->
         <item>Change password</item>
         <item>Log out</item>
     </string-array>

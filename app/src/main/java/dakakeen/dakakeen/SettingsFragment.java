@@ -112,20 +112,20 @@ public class SettingsFragment extends Fragment implements ResponseHandler {
 
 
                 switch (position) {
-
+/*
                     case 0:
                         i = new Intent(getContext(),EditProfile.class);
                         i.putExtra("account",account);
                         startActivity(i);
-                        break;
-                    case 1:
+                        break;*/
+                    case 0:
                         i = new Intent(getContext(),ChangePassword.class);
 
                         i.putExtra("username",account.getUsername());
                         i.putExtra("password",account.getPassword());
                         startActivity(i);
                         break;
-                    case 2:
+                    case 1:
 
                         new AlertDialog.Builder(getContext())
                                 .setTitle(getString(R.string.logout))

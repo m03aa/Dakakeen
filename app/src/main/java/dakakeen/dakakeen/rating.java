@@ -13,8 +13,8 @@ public class rating extends AppCompatActivity {
 
         private Offer offer;
         private RatingBar ratingBar;
-        private EditText review ;
-        private TextView noRaiting,reviweWord;
+
+        private TextView noRaiting,reviweWord,review ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class rating extends AppCompatActivity {
         noRaiting=(TextView) findViewById(R.id.noRaitingTextView);
 
             ratingBar = (RatingBar) findViewById(R.id.providerRatingBar);
-            review = (EditText) findViewById(R.id.providerReview);
+            review = (TextView) findViewById(R.id.providerReview);
             reviweWord=(TextView)findViewById(R.id.textView13);
         if (offer.getRating()!=null) {
             ratingBar.setRating(Float.parseFloat(offer.getRating()));

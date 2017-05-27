@@ -158,7 +158,10 @@ public class TabsActivity extends AppCompatActivity implements android.app.Actio
                     case 1:
                         return new ViewMyOffers();
                     case 2:
-                        return new SettingsFragment();
+                        SettingsFragment settings = new SettingsFragment();
+                        bundle.putSerializable("account",account);
+                        settings.setArguments(bundle);
+                        return settings;
                     default:
                         return null;
                 }
