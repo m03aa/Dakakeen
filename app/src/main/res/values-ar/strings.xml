@@ -123,6 +123,9 @@
     <string name="rate_offer">تقييم العرض</string>
     <string name="check_connection">الرجاء التأكد من اتصالك بالانترنت</string>
     <string name="change_password">تغير كلمة السر</string>
+    <string name="hello_blank_fragment">أهلا فاضي!!</string>
+    <string name="section_format">سيكشن فورمات</string>
+    <string name="title_activity_tabs">عناوين التابز</string>
 
 
 </resources>
